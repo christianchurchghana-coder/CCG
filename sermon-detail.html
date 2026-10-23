@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Watch or listen to a sermon from Christian Church of Ghana.">
+<meta name="robots" content="noindex,follow">
+<title>Sermon | Christian Church of Ghana</title>
+<link rel="icon" type="image/png" href="images/ccg-icon-192.png">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="app.css">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1b2a4a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="application-name" content="CCG">
+<meta name="apple-mobile-web-app-title" content="CCG">
+<link rel="apple-touch-icon" href="images/ccg-icon-180.png">
+
+</head>
+<body>
+<div id="preloader" role="status" aria-label="Loading"><div class="spinner"></div></div>
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="logo"><a href="index.html"><img class="church-logo-img" src="images/church-logo.png" alt="CCG logo"><span>CCG</span></a></div>
+    <button class="mobile-nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
+    <nav class="main-nav" id="main-nav" aria-label="Primary"><ul>
+      <li><a href="index.html">Home</a></li><li><a href="others.html">Others</a></li><li><a href="index.html#sermons">Sermons</a></li><li><a href="prayer.html">Live Prayer</a></li><li><a href="bible.html">Bible</a></li><li><a href="index.html#events">Events</a></li><li><a href="index.html#community">Community</a></li><li><a href="give.html">Give</a></li>
+      <li id="auth-link-container"><a href="login.html" id="nav-login-link">Login / Register</a></li>
+    </ul></nav>
+  </div>
+</header>
+<main class="container section" id="sermon-main">
+  <a href="index.html#sermons">&larr; All sermons</a>
+  <article class="service-card" style="max-width:800px;margin:2rem auto">
+    <p class="auth-eyebrow">Sermon</p>
+    <h1 id="sermon-title">Loading sermon&hellip;</h1>
+    <p id="sermon-meta" class="service-time"></p>
+    <p id="sermon-description"></p>
+    <div id="sermon-media"></div>
+    <p id="sermon-empty" role="status" hidden></p>
+  </article>
+</main>
+<footer class="site-footer"><div class="footer-bottom container">&copy; <span id="year">2026</span> Christian Church of Ghana. All Rights Reserved.</div></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="supabase-client.js"></script>
+<script src="presence.js"></script>
+<script src="site.js"></script>
+<script src="users.js"></script>
+<script src="data.js"></script>
+<script src="sermon-detail.js"></script>
+<script src="nav-icons.js"></script>
+<script src="ccg-guide.js" defer></script>
+<script src="app.js" defer></script>
+</body>
+</html>
+
+

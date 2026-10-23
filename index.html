@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Christian Church of Ghana | Worship, Sermons &amp; Community in Accra</title>
+<meta name="description" content="Join Christian Church of Ghana in Accra for worship, Bible study, sermons, church events, and a welcoming faith community.">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_GH">
+<meta property="og:site_name" content="Christian Church of Ghana">
+<meta property="og:title" content="Christian Church of Ghana | Worship &amp; Community in Accra">
+<meta property="og:description" content="Join Christian Church of Ghana in Accra for worship, Bible study, sermons, church events, and a welcoming faith community.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/png" href="images/ccg-icon-192.png">
+<link rel="preload" as="image" href="images/church-logo.png" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="celebrations.css">
+<link rel="stylesheet" href="new-year-screen.css">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1b2a4a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="application-name" content="CCG">
+<meta name="apple-mobile-web-app-title" content="CCG">
+<link rel="apple-touch-icon" href="images/ccg-icon-180.png">
+
+<style>
+/* Homepage-specific styles */
+.guest-banner { background: var(--green); border-bottom: 1px solid rgba(255, 253, 248, 0.18); color: var(--paper); padding: 0.65rem 1.5rem 0.8rem; font-size: 0.82rem; }
+.guest-banner-inner { max-width: 1120px; margin: 0 auto; }
+.guest-copy { margin: 0 0 0.65rem; }
+.guest-actions { display: flex; gap: 0.55rem; }
+.guest-actions a { display: inline-flex; align-items: center; min-height: 32px; padding: 0.35rem 0.8rem; border: 1px solid rgba(255,253,248,0.65); border-radius: 4px; color: var(--paper); font-size: 0.78rem; font-weight: 600; text-decoration: none; }
+.guest-actions a:first-child { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+.guest-actions a:hover { filter: brightness(1.08); }
+.verse-hero { background: linear-gradient(160deg, var(--indigo-dark), #101a2d); color: var(--paper); text-align: center; padding: 2rem 1.5rem 2.8rem; min-height: 285px; display: flex; align-items: center; }
+.verse-hero .container { max-width: 900px; }
+.verse-hero h1 { color: var(--gold-light); font-family: var(--font-display); font-size: 2rem; margin: 0 0 1.15rem; }
+.verse-hero .verse-text { color: var(--paper); font-family: var(--font-body); font-style: normal; font-size: 1.05rem; line-height: 1.65; margin: 0 auto 1rem; }
+.verse-hero .verse-ref { color: var(--gold-light); font-size: 0.85rem; font-style: italic; text-transform: none; letter-spacing: normal; }
+.verse-hero { position: relative; padding-bottom: 4rem; }
+.welcome-language-control { display: flex; justify-content: center; align-items: center; gap: .55rem; margin: 0 auto 1.15rem; color: rgba(255,255,255,.78); font-size: .78rem; }
+.welcome-language-control select { padding: .4rem .65rem; border: 1px solid rgba(255,255,255,.35); border-radius: 999px; color: #fff; background: rgba(255,255,255,.08); font: inherit; }
+.welcome-language-control option { color: #1b2a4a; }
+.welcome-time-greeting { min-height: 1.1em; margin: 0 0 .25rem; color: var(--gold-light); font: 700 clamp(1.5rem,4vw,2.1rem)/1.15 var(--font-display); transition: opacity .35s ease, transform .35s ease; }
+.welcome-greeting { min-height: 1.1em; margin: 0 0 .75rem; color: rgba(255,255,255,.85); font: 600 1rem/1.3 var(--font-body); transition: opacity .35s ease, transform .35s ease; }
+.welcome-time-greeting.is-changing, .welcome-greeting.is-changing { opacity: 0; transform: translateY(6px); }
+.scroll-cue { position: absolute; bottom: .55rem; left: 50%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: .45rem; color: rgba(255,255,255,.82); font-size: .72rem; text-decoration: none; }
+.scroll-cue-icon { width: 15px; height: 24px; border: 1.5px solid currentColor; border-radius: 999px; position: relative; }
+.scroll-cue-icon::after { content: ""; position: absolute; width: 2px; height: 5px; border-radius: 2px; background: currentColor; top: 4px; left: 5px; animation: scroll-cue-move 1.4s ease-in-out infinite; }
+@keyframes scroll-cue-move { 0%, 100% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(6px); opacity: .35; } }
+.low-data .live-wrap { max-width: 560px; }
+.low-data-hint { margin: .7rem 0 0; font-size: .82rem; color: #565b66; }
+@media (prefers-reduced-motion: reduce) { .scroll-cue-icon::after { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .welcome-time-greeting, .welcome-greeting { transition: none; } }
+.pastor-live-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1rem; margin: 1.5rem 0 2rem; }
+.pastor-live-card { background: var(--paper); border: 1px solid var(--line); border-top: 4px solid var(--gold); border-radius: var(--radius-sm); padding: 1.25rem; box-shadow: 0 4px 15px rgba(0,0,0,0.06); }
+.pastor-live-card h3 { margin: 0 0 .4rem; color: var(--indigo); font-family: var(--font-display); font-size: 1.25rem; }
+.pastor-live-card p { color: var(--muted); font-size: .9rem; line-height: 1.5; margin: 0 0 .9rem; }
+.pastor-live-actions { display: flex; gap: .55rem; flex-wrap: wrap; }
+.pastor-live-actions a { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: .55rem .8rem; border-radius: var(--radius-sm); text-decoration: none; font-size: .84rem; font-weight: 600; }
+.pastor-live-actions .subscribe { background: var(--gold); color: var(--ink); }
+.pastor-live-actions .watch { border: 1px solid var(--indigo); color: var(--indigo); }
+.live-alert-note { padding: .8rem 1rem; border-left: 4px solid var(--green); background: rgba(31, 92, 75, .08); color: var(--ink); font-size: .88rem; line-height: 1.5; }
+.live-section-divider { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+.section { padding: 3.5rem 0; }
+.section-title { font-family: var(--font-display); font-size: 2rem; color: var(--indigo); text-align: center; margin: 0 0 0.6rem; }
+.section-sub { text-align: center; color: #565b66; max-width: 560px; margin: 0 auto 2.25rem; line-height: 1.6; }
+.verse-card { background: var(--paper); border-radius: var(--radius-md); box-shadow: var(--shadow-card); padding: 2.5rem 2rem; max-width: 700px; margin: 0 auto; text-align: center; position: relative; overflow: hidden; }
+.verse-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 7px; background: repeating-linear-gradient(90deg, var(--gold) 0, var(--gold) 14%, var(--green) 14%, var(--green) 28%, var(--rust) 28%, var(--rust) 40%, var(--indigo) 40%, var(--indigo) 50%); background-size: 220px 100%; }
+.verse-text { font-family: var(--font-display); font-size: 1.25rem; font-style: italic; color: var(--ink); line-height: 1.7; margin: 0.75rem 0 1rem; }
+.verse-ref { font-weight: 700; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.85rem; }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+.service-card { background: var(--paper); border-radius: var(--radius-sm); box-shadow: 0 4px 15px rgba(0,0,0,0.07); padding: 1.75rem 1.5rem; border-top: 4px solid var(--gold); }
+.service-card h3 { color: var(--indigo); margin: 0 0 0.5rem; font-size: 1.1rem; }
+.service-card p { margin: 0 0 0.5rem; color: #565b66; font-size: 0.92rem; line-height: 1.55; }
+.service-time { font-weight: 700; color: var(--green); font-size: 0.9rem; }
+
+/* ---------- Events + Community (new) ---------- */
+.ev-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.9rem; }
+.btn-sm { font: inherit; font-weight: 600; font-size: 0.85rem; padding: 0.5rem 0.95rem; border-radius: var(--radius-sm); border: 1.5px solid var(--indigo); background: transparent; color: var(--indigo); cursor: pointer; transition: background .15s ease, color .15s ease; }
+.btn-sm:hover { background: rgba(0,0,0,0.05); }
+.btn-sm.primary { background: var(--indigo); color: var(--paper); }
+.btn-sm.primary:hover { background: var(--indigo-dark); }
+.btn-sm.on { background: var(--green); border-color: var(--green); color: #fff; }
+.btn-sm:focus-visible, .cm-input:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.going-count { font-size: 0.82rem; color: #565b66; margin-top: 0.6rem; }
+
+.community { margin-top: 3rem; background: var(--paper); border-radius: var(--radius-md); box-shadow: var(--shadow-card); padding: 2rem 1.5rem; position: relative; overflow: hidden; }
+.community::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 7px; background: repeating-linear-gradient(90deg, var(--gold) 0, var(--gold) 14%, var(--green) 14%, var(--green) 28%, var(--rust) 28%, var(--rust) 40%, var(--indigo) 40%, var(--indigo) 50%); background-size: 220px 100%; }
+.community h3 { font-family: var(--font-display); color: var(--indigo); font-size: 1.5rem; margin: 0.5rem 0 0.3rem; text-align: center; }
+.community .lead { text-align: center; color: #565b66; margin: 0 auto 1.5rem; max-width: 560px; line-height: 1.6; font-size: 0.95rem; }
+.cm-me { text-align: center; margin-bottom: 1.25rem; font-size: 0.92rem; }
+.cm-me form { display: inline-flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
+.cm-input { font: inherit; padding: 0.55rem 0.8rem; border: 1.5px solid #cfd3da; border-radius: var(--radius-sm); background: #fff; color: var(--ink); min-width: 0; }
+.cm-layout { display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.5rem; }
+@media (max-width: 820px) { .cm-layout { grid-template-columns: 1fr; } }
+.cm-tools { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.cm-tools .cm-input { flex: 1 1 160px; }
+.cm-list { display: grid; gap: 0.75rem; max-height: 440px; overflow-y: auto; padding-right: 4px; }
+.member { display: flex; align-items: center; gap: 0.85rem; padding: 0.75rem; border: 1px solid #e4e6ea; border-radius: var(--radius-sm); }
+.avatar { flex: 0 0 auto; width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 0.95rem; }
+.member-info { flex: 1; min-width: 0; }
+.member-name { font-weight: 700; color: var(--ink); font-size: 0.95rem; }
+.member-meta { font-size: 0.8rem; color: #565b66; line-height: 1.4; }
+.member-btns { display: flex; gap: 0.4rem; flex-wrap: wrap; justify-content: flex-end; }
+.cm-empty { color: #565b66; font-size: 0.9rem; text-align: center; padding: 1rem 0; }
+.chat-box { border: 1px solid #e4e6ea; border-radius: var(--radius-sm); display: flex; flex-direction: column; min-height: 440px; }
+.chat-head { padding: 0.75rem 1rem; border-bottom: 1px solid #e4e6ea; font-weight: 700; color: var(--indigo); font-size: 0.95rem; }
+.friend-tabs { display: flex; gap: 0.4rem; flex-wrap: wrap; padding: 0.6rem 0.75rem; border-bottom: 1px solid #e4e6ea; }
+.friend-tabs .btn-sm { font-size: 0.78rem; padding: 0.3rem 0.65rem; }
+.chat-msgs { flex: 1; padding: 0.9rem; overflow-y: auto; display: flex; flex-direction: column; gap: 0.5rem; max-height: 300px; }
+.msg { max-width: 82%; padding: 0.5rem 0.8rem; border-radius: 14px; font-size: 0.9rem; line-height: 1.45; background: #eef0f3; color: var(--ink); align-self: flex-start; word-wrap: break-word; }
+.msg.me { align-self: flex-end; background: var(--indigo); color: var(--paper); }
+.msg time { display: block; font-size: 0.68rem; opacity: 0.65; margin-top: 2px; }
+.chat-form { display: flex; gap: 0.5rem; padding: 0.75rem; border-top: 1px solid #e4e6ea; }
+.chat-form .cm-input { flex: 1; }
+.cm-note { font-size: 0.78rem; color: #6b7080; text-align: center; margin-top: 1rem; }
+.status-panel { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid #e4e6ea; border-radius: var(--radius-sm); background: #fff; }
+.status-panel h4 { margin: 0 0 .75rem; color: var(--indigo); font-family: var(--font-display); font-size: 1.15rem; }
+.status-form { display: grid; grid-template-columns: 1fr auto; gap: .6rem; align-items: end; }
+.status-input { width: 100%; min-height: 76px; resize: vertical; }
+.status-feed { display: grid; gap: .65rem; margin-top: 1rem; max-height: 380px; overflow-y: auto; }
+.status-card { padding: .8rem 1rem; border: 1px solid #e4e6ea; border-radius: var(--radius-sm); background: var(--parchment); }
+.status-card-head { display: flex; justify-content: space-between; align-items: center; gap: .6rem; margin-bottom: .35rem; }
+.status-card-head strong { color: var(--indigo); font-size: .9rem; }
+.status-card time { color: #6b7080; font-size: .75rem; }
+.status-card p { margin: 0; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; }
+.status-delete { border: 0; background: none; color: var(--rust); font: inherit; cursor: pointer; font-size: .78rem; }
+.streak-badge { display: inline-flex; align-items: center; gap: .2rem; border-radius: 999px; padding: .18rem .55rem; color: #8a4a00; background: #fff1d4; font-size: .75rem; font-weight: 700; white-space: nowrap; }
+.chat-streak { padding: .45rem .8rem; color: #8a4a00; background: #fff8e9; border-bottom: 1px solid #f0dfba; font-size: .82rem; font-weight: 600; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.online-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--green); margin-left: 4px; vertical-align: middle; }
+.unread { display: inline-block; min-width: 1.2em; padding: 0 0.35em; margin-left: 0.25em; border-radius: 999px; background: var(--rust); color: #fff; font-size: 0.7rem; line-height: 1.4; text-align: center; }
+
+/* ---------- Media: live stream, audio, low-data (new) ---------- */
+.data-bar { display: flex; align-items: center; justify-content: center; gap: 0.75rem; flex-wrap: wrap; padding: 0.55rem 1rem; background: #f3f1ea; border-bottom: 1px solid #e4e0d3; font-size: 0.85rem; color: var(--ink); }
+.live-wrap { max-width: 860px; margin: 0 auto; background: var(--paper); border-radius: var(--radius-md); box-shadow: var(--shadow-card); overflow: hidden; }
+.live-top { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; padding: 1rem 1.25rem; border-bottom: 1px solid #e4e6ea; }
+.live-badge { font-weight: 700; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.25rem 0.65rem; border-radius: 999px; background: #e4e6ea; color: #565b66; }
+.live-badge.on { background: #c62828; color: #fff; }
+.live-title { font-weight: 700; color: var(--indigo); flex: 1; min-width: 160px; }
+.live-body { padding: 1.25rem; text-align: center; color: #565b66; line-height: 1.6; }
+.live-frame { position: relative; width: 100%; padding-top: 56.25%; background: #000; }
+.live-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.live-links { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-top: 0.9rem; }
+.live-links a { text-decoration: none; display: inline-block; }
+.media-row { margin-top: 0.75rem; display: grid; gap: 0.5rem; }
+.media-row audio { width: 100%; height: 38px; }
+.media-row a { font-size: 0.85rem; font-weight: 600; color: var(--rust); text-decoration: none; }
+.media-row a:hover { text-decoration: underline; }
+.low-data *, .low-data *::before, .low-data *::after { animation: none !important; transition: none !important; }
+.low-data #preloader { display: none !important; }
+</style>
+</head>
+<body>
+<a href="#home-main" class="skip-link">Skip to content</a>
+<div id="preloader" role="status" aria-label="Loading">
+    <div class="preloader-inner">
+        <img class="preloader-logo" src="images/church-logo.png" alt="Christian Church of Ghana" width="96" height="96" fetchpriority="high" decoding="sync">
+        <div class="spinner" aria-hidden="true"></div>
+    </div>
+</div>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="logo">
+            <a href="index.html"><img src="images/church-logo.png" alt="Christian Church of Ghana logo" class="church-logo-img"><span>Christian Church of Ghana</span></a>
+        </div>
+        <nav class="main-nav" id="main-nav" aria-label="Primary">
+            <ul>
+                <li><a href="#home" aria-current="page">Home</a></li>
+                <li><a href="others.html">Others</a></li>
+                <li><a href="social.html">Follow Us</a></li>
+                <li><a href="#welcome">About Us</a></li>
+                <li><a href="#sermons">Sermons</a></li>
+                <li><a href="prayer.html">Live Prayer</a></li>
+                <li><a href="bible.html">Bible</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#community">Community</a></li>
+                <li id="auth-link-container"><a href="login.html" id="nav-login-link">Login / Register</a></li>
+                <li><a href="give.html">Give</a></li>
+                <li><a href="mailto:christianchurchghana@gmail.com">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-nav-toggle" aria-label="Open menu" aria-expanded="false">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+    </div>
+</header>
+
+<div class="guest-banner" id="member-banner">
+    <div class="guest-banner-inner">
+        <p class="guest-copy">You're browsing as a guest. Create a free account to watch full sermon videos, download sermon notes, save events, and view your giving history.</p>
+        <div class="guest-actions"><a href="login.html#register">Create a free account</a><a href="login.html">Login</a></div>
+    </div>
+</div>
+
+<main id="home-main">
+    <section class="new-year-takeover" id="new-year-takeover" aria-label="New Year countdown" aria-live="polite" hidden>
+        <div class="new-year-stars" aria-hidden="true"></div>
+        <div class="new-year-content">
+            <img src="images/ccg-icon-192.png" alt="" class="new-year-mark">
+            <p class="new-year-eyebrow" id="new-year-eyebrow">Christian Church of Ghana · New Year’s Eve · your local time</p>
+            <h1 id="new-year-screen-title">We’re counting down together</h1>
+            <p class="new-year-subtitle" id="new-year-screen-subtitle">A new year of hope, faith, and fresh beginnings is almost here.</p>
+            <div class="new-year-big-clock" id="new-year-big-clock" role="timer" aria-label="Time until the New Year">
+                <span><b data-new-year-unit="days">0</b><small>days</small></span><span><b data-new-year-unit="hours">00</b><small>hours</small></span><span><b data-new-year-unit="minutes">00</b><small>minutes</small></span><span><b data-new-year-unit="seconds">00</b><small>seconds</small></span>
+            </div>
+            <p class="new-year-scripture">“Behold, I make all things new.” <span>Revelation 21:5</span></p>
+            <button class="new-year-sound" id="new-year-sound" type="button" aria-pressed="false">♪ Turn the final countdown sound on</button>
+            <button class="new-year-enter" id="new-year-enter" type="button" hidden>Enter the church app</button>
+        </div>
+    </section>
+    <section class="verse-hero" id="home" aria-labelledby="verse-title">
+        <div class="container">
+            <label class="welcome-language-control" for="welcome-language">Welcome in
+                <select id="welcome-language" aria-label="Choose welcome language">
+                    <option value="auto">Ghanaian languages · rotate</option>
+                    <option value="en">English</option>
+                    <option value="tw">Twi</option>
+                    <option value="ga">Ga</option>
+                    <option value="ee">Ewe</option>
+                </select>
+            </label>
+            <p class="welcome-time-greeting" id="welcome-time-greeting" aria-live="polite">Good morning</p>
+            <p class="welcome-greeting" id="welcome-greeting" aria-live="polite">Welcome</p>
+            <h1 id="verse-title">Verse of the Day</h1>
+            <p class="verse-text" aria-live="polite">Loading today’s Bible verse…</p>
+            <p class="verse-ref" aria-live="polite">Today’s reading · KJV</p>
+        </div>
+        <a class="scroll-cue" href="#welcome" aria-label="Scroll down to learn about the church"><span class="scroll-cue-icon" aria-hidden="true"></span><span>Scroll to explore</span></a>
+    </section>
+
+    <aside class="streak-reminder" id="streak-reminder" aria-live="polite" hidden>
+        <span class="streak-reminder-icon" aria-hidden="true">🔥</span>
+        <div><strong id="streak-reminder-title">Keep your reading streak going</strong><p id="streak-reminder-copy">Read today’s verse and open a Bible chapter to keep your streak.</p></div>
+        <a class="streak-reminder-link" id="streak-reminder-link" href="bible.html">Read today’s verse</a>
+        <button type="button" class="streak-reminder-dismiss" id="streak-reminder-dismiss" aria-label="Dismiss today’s streak reminder">×</button>
+    </aside>
+
+    <div class="data-bar" id="data-bar">
+        <span id="data-bar-text">Slow or expensive data?</span>
+        <button type="button" class="btn-sm" id="lowdata-toggle" aria-pressed="false">Turn on low-data mode</button>
+    </div>
+
+    <section class="celebration-section container" aria-labelledby="celebrations-title">
+        <div class="celebration-heading"><p class="celebration-kicker">Together in every season</p><h2 id="celebrations-title">Church celebrations</h2><p>Count down to the New Year and Easter, and share birthday joy with the church family.</p></div>
+        <div class="celebration-grid">
+            <article class="celebration-card" id="new-year-card" data-celebration="new-year">
+                <span class="celebration-icon" aria-hidden="true">✦</span><p class="celebration-label">New Year</p><h3 id="new-year-title">A new year is on the way</h3>
+                <div class="celebration-clock" id="new-year-clock" role="timer" aria-label="Countdown to New Year"><span><b data-unit="days">—</b><small>days</small></span><span><b data-unit="hours">—</b><small>hours</small></span><span><b data-unit="minutes">—</b><small>minutes</small></span><span><b data-unit="seconds">—</b><small>seconds</small></span></div>
+                <p class="celebration-message" id="new-year-message" aria-live="polite">May the coming year be filled with hope and faith.</p>
+            </article>
+            <article class="celebration-card easter-card" id="easter-card" data-celebration="easter">
+                <span class="celebration-icon" aria-hidden="true">✝</span><p class="celebration-label">Easter Sunday</p><h3 id="easter-title">Celebrate the hope of Easter</h3>
+                <div class="celebration-clock" id="easter-clock" role="timer" aria-label="Countdown to Easter Sunday"><span><b data-unit="days">—</b><small>days</small></span><span><b data-unit="hours">—</b><small>hours</small></span><span><b data-unit="minutes">—</b><small>minutes</small></span><span><b data-unit="seconds">—</b><small>seconds</small></span></div>
+                <p class="celebration-message" id="easter-message" aria-live="polite">Rejoice in the resurrection and the promise of new life.</p>
+            </article>
+        </div>
+        <div class="birthday-card" id="birthday-card">
+            <div class="birthday-copy"><p class="celebration-label">Church family birthdays</p><h3>Celebrate one another</h3><p>Share just your birthday month and day so signed-in members can celebrate with you. Your birth year is never collected.</p><ul class="birthday-list" id="birthday-list" aria-live="polite"><li>Sign in to add a birthday or see today's celebrations.</li></ul></div>
+            <form class="birthday-form" id="birthday-form" hidden>
+                <label for="birthday-date">Your birthday (month and day)</label><input id="birthday-date" name="birthday" type="date" required>
+                <label class="birthday-consent"><input id="birthday-consent" type="checkbox" required><span>I agree to share my birthday month and day with signed-in church members so they can celebrate me.</span></label>
+                <button class="btn-sm primary" type="submit">Save birthday</button><button class="btn-sm" id="birthday-remove" type="button" hidden>Remove my birthday</button>
+                <button class="birthday-reminders" id="birthday-reminders" type="button">Enable reminders on this device</button>
+                <p class="birthday-status" id="birthday-status" role="status"></p>
+            </form>
+        </div>
+        <p class="celebration-footnote">Browser birthday reminders work when you open the site. Phone notifications while the app is closed require a separate push-notification service and permission.</p>
+    </section>
+
+    <section class="section container" id="welcome">
+        <h2 class="section-title">Join Us for Worship</h2>
+        <p class="section-sub">We are a vibrant, multicultural congregation dedicated to spreading the love of Christ and serving our community in Accra and beyond. We can't wait to welcome you.</p>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Sunday Service</h3>
+                <p>A powerful time of worship, prayer, and life-changing word.</p>
+                <p class="service-time">9:00 AM &ndash; 11:30 AM</p>
+            </div>
+            <div class="service-card">
+                <h3>Mid-week Bible Study</h3>
+                <p>Dive deeper into the scriptures with us every Wednesday.</p>
+                <p class="service-time">9:00 AM &ndash; 12:00 PM</p>
+            </div>
+            <div class="service-card">
+                <h3>Youth Fellowship</h3>
+                <p>Engaging and fun-filled service for the next generation.</p>
+                <p class="service-time">Fridays, 5:00 PM &ndash; 6:30 PM</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section container" id="sermons">
+        <h2 class="section-title">Latest Sermons</h2>
+        <p class="section-sub">Fresh messages from our pastors, updated weekly.</p>
+        <div id="sermon-grid" class="services-grid" aria-live="polite"><p class="section-sub">Loading sermons&hellip;</p></div>
+    </section>
+
+    <section class="section container" id="prayer-lockin" aria-labelledby="prayer-lockin-title">
+        <div class="prayer-card">
+            <p class="prayer-eyebrow">A quiet moment with God</p>
+            <h2 class="section-title" id="prayer-lockin-title">Prayer Lock-In</h2>
+            <p class="section-sub">Join the church&rsquo;s shared prayer time for Christmas, Easter, New Year&rsquo;s crossover, or another gathering.</p>
+            <p class="prayer-note"><a class="btn-sm primary" href="prayer.html">See live devotion, prayer &amp; fasting sessions</a></p>
+            <div class="prayer-schedule-summary" id="prayer-schedule-summary" aria-live="polite">Loading the church prayer schedule&hellip;</div>
+            <div class="prayer-schedule-clock" id="prayer-schedule-clock" aria-live="off" hidden><span id="prayer-schedule-clock-label">Starts in</span><strong id="prayer-schedule-countdown">--:--</strong></div>
+            <button class="btn-sm primary prayer-join" id="prayer-join" type="button" hidden>Join the prayer session</button>
+            <p class="prayer-note" id="prayer-schedule-note">The church sets the occasion and time for everyone. Keep this page open during prayer; you can leave whenever you need.</p>
+            <form class="prayer-admin-form" id="prayer-admin-form" hidden>
+                <h3>Set the church prayer time</h3>
+                <div class="prayer-admin-fields">
+                    <label>Occasion
+                        <select id="prayer-admin-occasion" class="cm-input">
+                            <option value="Christmas">Christmas</option>
+                            <option value="Easter">Easter</option>
+                            <option value="crossover">31st Night Crossover</option>
+                            <option value="other">Another church event</option>
+                        </select>
+                    </label>
+                    <label class="prayer-other-label" id="prayer-admin-other-wrap" hidden>Event name
+                        <input id="prayer-admin-other" class="cm-input" maxlength="50" placeholder="For example, Thanksgiving service">
+                    </label>
+                    <label>Prayer starts at
+                        <input id="prayer-admin-start" class="cm-input" type="datetime-local" required>
+                    </label>
+                    <label>Prayer length (minutes)
+                        <input id="prayer-admin-duration" class="cm-input" type="number" min="1" max="1440" value="15" required>
+                    </label>
+                </div>
+                <button class="btn-sm primary" type="submit">Publish prayer time</button>
+                <p class="prayer-admin-status" id="prayer-admin-status" aria-live="polite"></p>
+            </form>
+        </div>
+    </section>
+
+    <section class="section container" id="profile" aria-labelledby="profile-title">
+        <h2 class="section-title" id="profile-title">My Profile</h2>
+        <p class="section-sub">Update your church profile and account details. Only signed-in members can see this information.</p>
+        <p class="profile-feedback" id="profile-note" role="status" aria-live="polite">Sign in to manage your profile.</p>
+        <div class="profile-grid" id="profile-content" hidden>
+            <section class="profile-card profile-summary">
+                <div class="profile-avatar" id="profile-avatar" aria-hidden="true">CC</div>
+                <div><p class="profile-eyebrow">Your public name</p><h3 id="profile-name-heading">Member</h3><p id="profile-email-summary"></p></div>
+            </section>
+            <section class="profile-card">
+                <h3>Profile details</h3>
+                <p class="profile-help">Your name, bio, and interests are visible to signed-in church members. Phone and email are kept in your private account settings.</p>
+                <form id="profile-form" class="profile-form">
+                    <label>Full name<input id="profile-display-name" maxlength="40" required autocomplete="name"></label>
+                    <label>Phone number <span class="profile-muted">(private)</span><input id="profile-phone" maxlength="32" autocomplete="tel"></label>
+                    <label>About you<textarea id="profile-bio" maxlength="280" rows="3" placeholder="Share a little about yourself"></textarea></label>
+                    <label>Interests<textarea id="profile-interests" maxlength="120" rows="2" placeholder="For example: worship, Bible study, volunteering"></textarea></label>
+                    <button class="btn-sm primary" type="submit">Save profile</button>
+                    <p class="profile-feedback" id="profile-save-note" role="status" aria-live="polite"></p>
+                </form>
+            </section>
+            <section class="profile-card nickname-card">
+                <h3>Request a nickname</h3>
+                <p class="profile-help">Choose a respectful name (2–24 characters). It only appears after a backend developer reviews and approves it. Your full name stays on your account.</p>
+                <div class="nickname-current"><span>Current approved nickname</span><strong id="nickname-current">None yet</strong></div>
+                <div class="nickname-request-state" id="nickname-request-state" role="status" aria-live="polite"></div>
+                <form id="nickname-form" class="profile-form">
+                    <label for="nickname-input">Nickname request</label>
+                    <input id="nickname-input" minlength="2" maxlength="24" autocomplete="nickname" placeholder="Enter a respectful nickname" required>
+                    <button class="btn-sm primary" type="submit">Send for review</button>
+                    <p class="profile-feedback" id="nickname-note" role="status" aria-live="polite"></p>
+                </form>
+                <a class="profile-contact" id="nickname-contact" href="mailto:christianchurchghana@gmail.com">Contact the backend developer about a nickname</a>
+            </section>
+            <section class="profile-card">
+                <h3>Account security</h3>
+                <div class="profile-form">
+                    <label for="account-email">Account email</label>
+                    <form id="email-form" class="profile-inline-form"><input id="account-email" type="email" autocomplete="email" required><button class="btn-sm" type="submit">Change email</button></form>
+                    <p class="profile-feedback" id="email-note" role="status" aria-live="polite">Email changes need confirmation from your inbox.</p>
+                    <form id="password-form" class="profile-form">
+                        <label for="account-password">New password<input id="account-password" type="password" minlength="8" autocomplete="new-password" required></label>
+                        <label for="account-password-confirm">Confirm new password<input id="account-password-confirm" type="password" minlength="8" autocomplete="new-password" required></label>
+                        <button class="btn-sm" type="submit">Update password</button>
+                        <p class="profile-feedback" id="password-note" role="status" aria-live="polite"></p>
+                    </form>
+                </div>
+                <p class="profile-created" id="profile-created"></p>
+            </section>
+        </div>
+    </section>
+
+    <section class="section container" id="events">
+        <h2 class="section-title">Upcoming Events</h2>
+        <p class="section-sub">Join us for these gatherings in the coming weeks. Tap &ldquo;I'm going&rdquo; to see who else is attending, then say hello.</p>
+        <div id="event-grid" class="services-grid" aria-live="polite"><p class="section-sub">Loading events&hellip;</p></div>
+
+        <!-- Meet &amp; Connect -->
+        <div class="community" id="community">
+            <h3>Meet &amp; Connect</h3>
+            <p class="lead">Find other members, see who is online, see who's going to each event, add friends, and chat before you arrive.</p>
+
+            <div class="cm-me" id="cm-me"></div>
+
+            <section class="status-panel" aria-labelledby="status-title">
+                <h4 id="status-title">Community status</h4>
+                <form class="status-form" id="status-form">
+                    <label class="sr-only" for="status-input">Share a short status</label>
+                    <textarea class="cm-input status-input" id="status-input" maxlength="280" placeholder="Share an encouragement, prayer request, or update…" disabled></textarea>
+                    <button class="btn-sm primary" type="submit" id="status-send" disabled>Post status</button>
+                </form>
+                <div class="status-feed" id="status-feed" aria-live="polite"><p class="cm-empty">Sign in to see community updates.</p></div>
+            </section>
+
+            <div class="cm-layout">
+                <div>
+                    <div class="cm-tools">
+                        <input class="cm-input" id="cm-search" type="search" placeholder="Search by name or interest" aria-label="Search members">
+                        <select class="cm-input" id="cm-filter" aria-label="Filter members by event">
+                            <option value="all">All members</option>
+                        </select>
+                    </div>
+                    <div class="cm-list" id="cm-list" aria-live="polite"></div>
+                </div>
+
+                <div class="chat-box" aria-label="Chat">
+                    <div class="chat-head" id="chat-head">Friends &amp; Chat</div>
+                    <div class="chat-streak" id="chat-streak" aria-live="polite">Mutual daily messages build a streak.</div>
+                    <div class="friend-tabs" id="friend-tabs"></div>
+                    <div class="chat-msgs" id="chat-msgs" aria-live="polite">
+                        <p class="cm-empty">Add a friend to start chatting.</p>
+                    </div>
+                    <form class="chat-form" id="chat-form" autocomplete="off">
+                        <input class="cm-input" id="chat-input" type="text" maxlength="500" placeholder="Type a message" aria-label="Message" disabled>
+                        <button class="btn-sm primary" type="submit" id="chat-send" disabled>Send</button>
+                    </form>
+                </div>
+            </div>
+            <p class="cm-note" id="cm-note">Connecting&hellip;</p>
+        </div>
+    </section>
+
+    <section class="section container">
+        <h2 class="section-title">Support the Ministry</h2>
+        <p class="section-sub">Your generosity supports the church and its work in the community. Contact the church office for verified giving instructions.</p>
+        <p style="text-align:center; margin-top:2rem;">
+            <a href="mailto:christianchurchghana@gmail.com?subject=Giving%20information" style="display:inline-block; text-decoration:none; font-weight:600; padding:0.8rem 1.6rem; border-radius:var(--radius-sm); background:var(--gold); color:var(--ink);">Request giving information</a>
+        </p>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-stripe"></div>
+    <div class="container footer-content">
+        <div>
+            <h3>Christian Church of Ghana</h3>
+            <p>A community growing in faith and love.</p>
+        </div>
+        <div>
+            <h3>Contact Us</h3>
+            <p>Teshie Tesaco, Accra, Ghana</p>
+            <p>Email: <a href="mailto:christianchurchghana@gmail.com">christianchurchghana@gmail.com</a></p>
+            <p>Phone: <a href="tel:+233548221004">+233 54 822 1004</a></p>
+        </div>
+    </div>
+    <div class="footer-bottom container">&copy; 2026 Christian Church of Ghana. All Rights Reserved.</div>
+</footer>
+
+<dialog class="prayer-dialog" id="prayer-dialog" aria-labelledby="prayer-dialog-title">
+    <div class="prayer-dialog-inner">
+        <button class="prayer-close" type="button" id="prayer-close" aria-label="Close prayer timer">&times;</button>
+        <div id="prayer-running-view">
+            <p class="prayer-eyebrow" id="prayer-running-occasion">Prayer time</p>
+            <h2 id="prayer-dialog-title">Take a quiet moment</h2>
+            <p class="prayer-verse">&ldquo;Be still, and know that I am God.&rdquo;<br><span>Psalm 46:10</span></p>
+            <div class="prayer-countdown" id="prayer-countdown" role="timer" aria-live="off">15:00</div>
+            <p class="prayer-status" id="prayer-status" aria-live="polite">Your prayer time is ready.</p>
+            <button class="btn-sm prayer-end" type="button" id="prayer-end">End prayer time</button>
+        </div>
+        <div id="prayer-finished-view" hidden>
+            <div class="prayer-confetti" aria-hidden="true"><span>✦</span><span>✧</span><span>✦</span><span>✧</span><span>✦</span></div>
+            <p class="prayer-eyebrow">Prayer time complete</p>
+            <h2 id="prayer-finished-title">Well done</h2>
+            <p class="prayer-finished-copy" id="prayer-finished-copy">Thank you for setting aside this time to pray.</p>
+            <button class="btn-sm primary" type="button" id="prayer-finish-close">Amen</button>
+        </div>
+    </div>
+</dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="supabase-client.js"></script>
+<script src="presence.js"></script>
+<script src="users.js"></script>
+<script src="supabase-community.js"></script>
+<script src="verse-of-the-day.js" defer></script>
+<script src="data.js"></script>
+<script src="prayer-lockin.js"></script>
+<script src="celebrations.js" defer></script>
+<script src="daily-reading-reminder.js" defer></script>
+<script>
+/* Homepage: renders local page sections and manages the mobile navigation. */
+(function () {
+    'use strict';
+
+    var menuToggle = document.querySelector('.mobile-nav-toggle');
+    var mainNav = document.getElementById('main-nav');
+    if (menuToggle && mainNav) {
+        menuToggle.setAttribute('aria-controls', 'main-nav');
+        menuToggle.addEventListener('click', function () {
+            var open = menuToggle.getAttribute('aria-expanded') !== 'true';
+            menuToggle.setAttribute('aria-expanded', String(open));
+            menuToggle.classList.toggle('is-open', open);
+            mainNav.classList.toggle('is-open', open);
+        });
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.classList.remove('is-open');
+                mainNav.classList.remove('is-open');
+            }
+        });
+        mainNav.addEventListener('click', function (event) {
+            var link = event.target.closest('a[href^="#"]');
+            if (!link) { return; }
+            var section = document.getElementById(link.getAttribute('href').slice(1));
+            if (!section) { return; }
+            event.preventDefault();
+            history.replaceState(null, '', link.getAttribute('href'));
+            section.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.classList.remove('is-open');
+            mainNav.classList.remove('is-open');
+        });
+    }
+
+    var navSections = Array.prototype.slice.call(document.querySelectorAll('.main-nav a[href^="#"]'))
+        .map(function (link) { return { link: link, section: document.getElementById(link.getAttribute('href').slice(1)) }; })
+        .filter(function (item) { return !!item.section; });
+    if ('IntersectionObserver' in window && navSections.length) {
+        var observer = new IntersectionObserver(function (entries) {
+            var visible = entries.filter(function (entry) { return entry.isIntersecting; })
+                .sort(function (a, b) { return b.intersectionRatio - a.intersectionRatio; })[0];
+            if (!visible) { return; }
+            navSections.forEach(function (item) {
+                if (item.section === visible.target) item.link.setAttribute('aria-current', 'page');
+                else item.link.removeAttribute('aria-current');
+            });
+        }, { rootMargin: '-18% 0px -65% 0px', threshold: [0, 0.1, 0.25, 0.5] });
+        navSections.forEach(function (item) { observer.observe(item.section); });
+    }
+
+    function escapeHtml(text) {
+        var div = document.createElement('div');
+        div.textContent = text == null ? '' : String(text);
+        return div.innerHTML;
+    }
+
+    /* data.js exposes the public sermon catalogue as an array. */
+    function loadSermons() {
+        var raw;
+        try {
+            raw = (typeof getSermons === 'function') ? getSermons() : null;
+        } catch (e) { raw = null; }
+        if (!raw) { return []; }
+        var list = Array.isArray(raw)
+            ? raw.slice()
+            : Object.keys(raw).map(function (key) {
+                var item = raw[key] || {};
+                return Object.assign({ id: key }, item);
+            });
+        list.sort(function (a, b) {
+            var da = Date.parse(a.date), db = Date.parse(b.date);
+            if (isNaN(da) && isNaN(db)) { return 0; }
+            if (isNaN(da)) { return 1; }
+            if (isNaN(db)) { return -1; }
+            return db - da;
+        });
+        return list;
+    }
+
+    function renderEvents() {
+        var grid = document.getElementById('event-grid');
+        if (!grid) { return; }
+        var events = [];
+        try {
+            events = (typeof getEvents === 'function') ? getEvents() : [];
+        } catch (e) { events = []; }
+        grid.innerHTML = '';
+        if (!Array.isArray(events) || events.length === 0) {
+            grid.innerHTML = '<p class="section-sub">No upcoming events have been posted yet.</p>';
+            return;
+        }
+        events.forEach(function (event) {
+            var card = document.createElement('article');
+            card.className = 'service-card event-card';
+            var image = event.image
+                ? '<img class="event-card-image" src="' + escapeHtml(event.image) + '" alt="' + escapeHtml(event.imageAlt || event.title) + '" loading="lazy">'
+                : '';
+            card.innerHTML = image +
+                '<div class="event-card-content">' +
+                '<p class="event-card-date">' + escapeHtml(event.dateLabel || event.date || '') + '</p>' +
+                '<h3>' + escapeHtml(event.title || 'Church event') + '</h3>' +
+                (event.bio ? '<p class="event-card-bio-label">About this gathering</p><p>' + escapeHtml(event.bio) + '</p>' : '') +
+                (event.location ? '<p class="event-card-location">' + escapeHtml(event.location) + '</p>' : '') +
+                '</div>';
+            grid.appendChild(card);
+        });
+    }
+
+    function renderSermons() {
+        var grid = document.getElementById('sermon-grid');
+        if (!grid) { return; }
+        var sermons = loadSermons();
+        grid.innerHTML = '';
+        if (sermons.length === 0) {
+            grid.innerHTML = '<p class="section-sub">No sermons available yet. Check back soon!</p>';
+            return;
+        }
+        sermons.slice(0, 3).forEach(function (s) {
+            var card = document.createElement('div');
+            card.className = 'service-card';
+            card.innerHTML =
+                '<h3>' + escapeHtml(s.title) + '</h3>' +
+                '<p>' + escapeHtml(s.speaker) + '</p>' +
+                '<p class="service-time">' + escapeHtml(s.date) + '</p>' +
+                '<p><a href="sermon-detail.html?id=' + encodeURIComponent(s.id || '') + '" style="color:var(--rust); font-weight:600;">Watch &rarr;</a></p>' +
+                mediaLinks(s);
+            grid.appendChild(card);
+        });
+    }
+
+    /* Meet & Connect is implemented in supabase-community.js. */
+
+    /* ================= Media: audio, notes, live, low-data ================= */
+
+    /* EDIT THESE: your YouTube channel ID (starts with UC...) makes the
+       live player work. Leave blank to show links instead. */
+    var LIVE = {
+        youtubeChannelId: '',
+        youtubeUrl: 'https://www.youtube.com/@ccg_official1',
+        facebookUrl: 'https://facebook.com'
+    };
+    /* Ghana is on GMT (UTC+0), so these are plain UTC times. day: 0 = Sunday. */
+    var SCHEDULE = [
+        { day: 0, start: 9 * 60,  end: 11 * 60 + 30, label: 'Sunday Service' },
+        { day: 3, start: 9 * 60,  end: 12 * 60,      label: 'Mid-week Bible Study' },
+        { day: 5, start: 17 * 60, end: 18 * 60 + 30, label: 'Youth Fellowship' }
+    ];
+    var LIVE_GRACE = 15; /* minutes before start / after end still counted as live */
+    var liveLoaded = false;
+
+    function isLowData() {
+        try {
+            var v = localStorage.getItem('ccg_lowdata');
+            if (v === '1') { return true; }
+            if (v === '0') { return false; }
+        } catch (e) { /* ignore */ }
+        return !!(navigator.connection && navigator.connection.saveData);
+    }
+
+    function setLowData(on, remember) {
+        document.documentElement.classList.toggle('low-data', on);
+        var btn = document.getElementById('lowdata-toggle');
+        var txt = document.getElementById('data-bar-text');
+        if (btn) {
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.textContent = on ? 'Turn off low-data mode' : 'Turn on low-data mode';
+        }
+        if (txt) {
+            txt.textContent = on ? 'Low-data mode is on: tap to load video; choose 480p in YouTube Settings for standard quality.' : 'Slow or expensive data?';
+        }
+        if (remember) {
+            try { localStorage.setItem('ccg_lowdata', on ? '1' : '0'); } catch (e) { /* ignore */ }
+        }
+        renderLive(true);
+    }
+
+    function safeUrl(u) {
+        u = String(u || '').trim();
+        return /^(https?:\/\/|\/|[\w\-.\/]+\.(mp3|m4a|ogg|wav|pdf|docx?))/i.test(u) && !/^javascript:/i.test(u) ? u : '';
+    }
+
+    /* Audio player + notes link for a sermon. Reads s.audio / s.audioUrl and
+       s.notes / s.notesUrl from data.js when present. */
+    function mediaLinks(s) {
+        var audio = safeUrl(s.audio || s.audioUrl);
+        var notes = safeUrl(s.notes || s.notesUrl);
+        if (!audio && !notes) { return ''; }
+        var html = '<div class="media-row">';
+        if (audio) {
+            html += '<audio controls preload="none" src="' + escapeHtml(audio) + '" aria-label="Listen to ' + escapeHtml(s.title) + '"></audio>' +
+                    '<a href="' + escapeHtml(audio) + '" download>Download audio</a>';
+        }
+        if (notes) {
+            html += '<a href="' + escapeHtml(notes) + '" download>Download sermon notes</a>';
+        }
+        return html + '</div>';
+    }
+
+    function nextService(now) {
+        var best = null;
+        for (var off = 0; off <= 7; off++) {
+            var base = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + off);
+            var d = new Date(base);
+            for (var i = 0; i < SCHEDULE.length; i++) {
+                var sc = SCHEDULE[i];
+                if (d.getUTCDay() !== sc.day) { continue; }
+                var start = base + sc.start * 60000, end = base + sc.end * 60000;
+                if (end + LIVE_GRACE * 60000 <= now.getTime()) { continue; }
+                var live = now.getTime() >= start - LIVE_GRACE * 60000 && now.getTime() <= end + LIVE_GRACE * 60000;
+                if (!best || start < best.start) { best = { sc: sc, start: start, live: live }; }
+            }
+        }
+        return best;
+    }
+
+    function fmtTime(mins) {
+        var h = Math.floor(mins / 60), m = mins % 60, ap = h >= 12 ? 'PM' : 'AM';
+        return ((h + 11) % 12 + 1) + ':' + ('0' + m).slice(-2) + ' ' + ap;
+    }
+
+    function renderLive(force) {
+        var badge = document.getElementById('live-badge');
+        var title = document.getElementById('live-title');
+        var body = document.getElementById('live-body');
+        if (!badge || !title || !body) { return; }
+        var n = nextService(new Date());
+        var links = '<div class="live-links">' +
+            '<a class="btn-sm primary" href="' + escapeHtml(LIVE.youtubeUrl) + '" target="_blank" rel="noopener noreferrer">YouTube</a>' +
+            '<a class="btn-sm" href="' + escapeHtml(LIVE.facebookUrl) + '" target="_blank" rel="noopener noreferrer">Facebook</a>' +
+            '<a class="btn-sm" href="#sermons">Past sermons</a></div>';
+
+        if (n && n.live) {
+            badge.textContent = '\u25CF Live now';
+            badge.className = 'live-badge on';
+            title.textContent = n.sc.label;
+            if (liveLoaded && !force) { return; }
+            liveLoaded = false;
+            if (!LIVE.youtubeChannelId) {
+                body.innerHTML = 'We are live now. Watch on one of our channels:' + links;
+            } else if (isLowData()) {
+                body.innerHTML = 'Low-data mode is on, so video is paused.' +
+                    '<div class="live-links"><button type="button" class="btn-sm primary" id="live-load">Tap to load video</button></div>' + links;
+            } else {
+                loadPlayer(body);
+            }
+        } else {
+            badge.textContent = 'Offline';
+            badge.className = 'live-badge';
+            liveLoaded = false;
+            if (n) {
+                var d = new Date(n.start);
+                title.textContent = 'Next: ' + n.sc.label;
+                body.innerHTML = 'Next live service is <strong>' +
+                    d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'short', timeZone: 'UTC' }) +
+                    ', ' + fmtTime(n.sc.start) + ' GMT</strong>. This page will go live automatically.' + links;
+            } else {
+                title.textContent = 'No service scheduled';
+                body.innerHTML = links;
+            }
+        }
+    }
+
+    function loadPlayer(body) {
+        body.innerHTML = '<div class="live-frame"><iframe title="Live service" loading="lazy" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen src="https://www.youtube.com/embed/live_stream?channel=' + encodeURIComponent(LIVE.youtubeChannelId) + '"></iframe></div>' +
+            (isLowData() ? '<p class="low-data-hint">For standard video quality, open YouTube Settings &#9881; Quality and choose 480p. YouTube adjusts stream quality automatically.</p>' : '');
+        liveLoaded = true;
+    }
+
+    function initMedia() {
+        var btn = document.getElementById('lowdata-toggle');
+        if (btn) {
+            btn.addEventListener('click', function () {
+                setLowData(btn.getAttribute('aria-pressed') !== 'true', true);
+            });
+        }
+        document.addEventListener('click', function (e) {
+            if (e.target && e.target.id === 'live-load') {
+                loadPlayer(document.getElementById('live-body'));
+            }
+        });
+        setLowData(isLowData(), false);
+        setInterval(function () { renderLive(false); }, 60000);
+    }
+
+    /* Loading screen: hide it as soon as the page has loaded, and never keep
+       it up longer than 2 seconds even if something is slow or fails. */
+    function hidePreloader() {
+        var p = document.getElementById('preloader');
+        if (!p || p.getAttribute('data-done')) { return; }
+        p.setAttribute('data-done', '1');
+        p.style.transition = 'opacity .25s ease';
+        p.style.opacity = '0';
+        p.style.pointerEvents = 'none';
+        setTimeout(function () { p.style.display = 'none'; }, 300);
+    }
+
+    /* One broken section must not stop the others from loading. */
+    function safely(fn) {
+        try { fn(); } catch (e) { if (window.console) { console.error(e); } }
+    }
+
+    function init() {
+        if (document.readyState === 'complete') { hidePreloader(); }
+        else { window.addEventListener('load', hidePreloader); }
+        setTimeout(hidePreloader, 2000);
+        safely(renderSermons);
+        safely(renderEvents);
+        safely(initMedia);
+        safely(initCommunity);
+        try {
+            if (typeof initializeAuthAndNav === 'function') { initializeAuthAndNav(); }
+        } catch (e) { /* storage unavailable: keep the guest view */ }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();
+</script>
+<script>
+(function () {
+    var greeting = document.getElementById('welcome-greeting');
+    var timeGreeting = document.getElementById('welcome-time-greeting');
+    var picker = document.getElementById('welcome-language');
+    if (!greeting || !picker || !timeGreeting) return;
+    var greetings = [
+        { code: 'en', text: 'Welcome', language: 'English' },
+        { code: 'tw', text: 'Akwaaba', language: 'Twi' },
+        { code: 'ga', text: 'Oobakɛ', language: 'Ga' },
+        { code: 'ee', text: 'Woezɔ', language: 'Ewe' }
+    ];
+    var index = 0;
+    var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function updateTimeGreeting() {
+        var hour = new Date().getHours();
+        var text = hour >= 5 && hour < 12 ? 'Good morning' : hour >= 12 && hour < 17 ? 'Good afternoon' : 'Good evening';
+        if (timeGreeting.textContent !== text) {
+            timeGreeting.classList.add('is-changing');
+            window.setTimeout(function () {
+                timeGreeting.textContent = text;
+                timeGreeting.classList.remove('is-changing');
+            }, reducedMotion ? 0 : 180);
+        }
+    }
+    function display(item) {
+        greeting.classList.add('is-changing');
+        window.setTimeout(function () {
+            greeting.textContent = item.text;
+            greeting.setAttribute('lang', item.code === 'tw' ? 'ak' : item.code);
+            greeting.title = item.language;
+            greeting.classList.remove('is-changing');
+        }, reducedMotion ? 0 : 180);
+    }
+    function select(value) {
+        if (value === 'auto') {
+            display(greetings[index]);
+            return;
+        }
+        var item = greetings.find(function (entry) { return entry.code === value; });
+        if (item) display(item);
+    }
+    picker.addEventListener('change', function () {
+        if (picker.value === 'auto') {
+            index = 0;
+            select('auto');
+        } else {
+            select(picker.value);
+        }
+    });
+    updateTimeGreeting();
+    window.setInterval(updateTimeGreeting, 60000);
+    window.setInterval(function () {
+        if (picker.value !== 'auto' || document.hidden) return;
+        index = (index + 1) % greetings.length;
+        select('auto');
+    }, 3200);
+})();
+</script>
+<script>
+(function () {
+    'use strict';
+    var sb = window.CCG && window.CCG.supabase;
+    var $ = function (id) { return document.getElementById(id); };
+    var note = function (id, text, error) { var node = $(id); if (!node) return; node.textContent = text || ''; node.classList.toggle('is-error', !!error); node.classList.toggle('is-success', !!text && !error); };
+    var initials = function (name) { return String(name || 'Member').trim().split(/\s+/).slice(0, 2).map(function (part) { return part.charAt(0).toUpperCase(); }).join(''); };
+    var user = null;
+    var profile = null;
+    var requests = null;
+    function displayName() { return profile && (profile.nickname || profile.display_name) || user && user.email || 'Member'; }
+    function syncNavigationName() { if (window.CCG && window.CCG.currentUser) window.CCG.currentUser.name = displayName(); var link = document.querySelector('#auth-link-container .nav-user-info'); if (link) link.textContent = displayName(); }
+    function showError(err, fallback) { return err && err.message || fallback; }
+    async function loadProfile() {
+        if (!sb) { note('profile-note', 'Profile service is not configured.'); return; }
+        try {
+            var auth = await sb.auth.getUser();
+            user = auth.data && auth.data.user;
+            if (!user) { note('profile-note', 'Sign in to manage your profile.'); return; }
+            var result = await sb.from('profiles').select('id,display_name,nickname,interests,bio,created_at').eq('id', user.id).maybeSingle();
+            if (result.error) throw result.error;
+            profile = result.data || { display_name: user.user_metadata && (user.user_metadata.display_name || user.user_metadata.full_name) || '' };
+            $('profile-content').hidden = false;
+            $('profile-note').hidden = true;
+            $('profile-display-name').value = profile.display_name || '';
+            $('profile-phone').value = user.user_metadata && user.user_metadata.phone || '';
+            $('profile-bio').value = profile.bio || '';
+            $('profile-interests').value = profile.interests || '';
+            $('profile-name-heading').textContent = displayName();
+            $('profile-avatar').textContent = initials(displayName());
+            syncNavigationName();
+            $('profile-email-summary').textContent = user.email || '';
+            $('account-email').value = user.email || '';
+            $('nickname-current').textContent = profile.nickname || 'None yet';
+            $('profile-created').textContent = profile.created_at ? 'Member since ' + new Date(profile.created_at).toLocaleDateString() : '';
+            var req = await sb.from('nickname_change_requests').select('id,requested_nickname,status,reviewer_note,created_at').eq('user_id', user.id).order('created_at', { ascending: false }).limit(1).maybeSingle();
+            if (req.error) throw req.error;
+            requests = req.data;
+            renderNicknameRequest();
+        } catch (err) {
+            $('profile-note').hidden = false;
+            note('profile-note', showError(err, 'Could not load your profile. Run the latest Supabase profile upgrade, then sign in again.'), true);
+        }
+    }
+    function renderNicknameRequest() {
+        var state = $('nickname-request-state');
+        var form = $('nickname-form');
+        var contact = $('nickname-contact');
+        if (!requests) { state.textContent = 'No nickname request has been submitted.'; form.hidden = false; contact.hidden = true; return; }
+        if (requests.status === 'pending') {
+            state.textContent = 'Pending backend review: “' + requests.requested_nickname + '”. Contact the backend developer and include request #' + requests.id + '.';
+            form.hidden = true;
+            contact.hidden = false;
+            contact.href = 'mailto:christianchurchghana@gmail.com?subject=Nickname%20review%20request%20' + encodeURIComponent(requests.id) + '&body=' + encodeURIComponent('Please review nickname request #' + requests.id + ' for ' + requests.requested_nickname + '. My account email is ' + (user.email || '') + '.');
+        } else {
+            var status = requests.status === 'approved' ? 'Approved' : 'Not approved';
+            state.textContent = status + ' · ' + requests.requested_nickname + (requests.reviewer_note ? ' · Reviewer note: ' + requests.reviewer_note : '');
+            form.hidden = false;
+            contact.hidden = false;
+            contact.href = 'mailto:christianchurchghana@gmail.com?subject=Nickname%20change%20request';
+        }
+    }
+    if (!$('profile-form')) return;
+    loadProfile();
+    $('profile-form').addEventListener('submit', async function (event) {
+        event.preventDefault();
+        if (!user) return;
+        var name = $('profile-display-name').value.trim();
+        if (name.length < 2) { note('profile-save-note', 'Enter a full name with at least 2 characters.', true); return; }
+        var save = await sb.from('profiles').update({ display_name: name, bio: $('profile-bio').value.trim(), interests: $('profile-interests').value.trim() }).eq('id', user.id);
+        if (save.error) { note('profile-save-note', save.error.message, true); return; }
+        var metadata = await sb.auth.updateUser({ data: { phone: $('profile-phone').value.trim() } });
+        if (metadata.error) { note('profile-save-note', metadata.error.message, true); return; }
+        profile.display_name = name;
+        profile.bio = $('profile-bio').value.trim();
+        profile.interests = $('profile-interests').value.trim();
+        syncNavigationName();
+        $('profile-name-heading').textContent = displayName();
+        $('profile-avatar').textContent = initials(displayName());
+        note('profile-save-note', 'Profile saved.');
+    });
+    $('nickname-form').addEventListener('submit', async function (event) {
+        event.preventDefault();
+        if (!user) return;
+        var nickname = $('nickname-input').value.trim().replace(/\s+/g, ' ');
+        if (nickname.length < 2 || nickname.length > 24 || /[\u0000-\u001f\u007f]/.test(nickname)) { note('nickname-note', 'Use 2–24 characters and remove unusual control characters.', true); return; }
+        var result = await sb.from('nickname_change_requests').insert({ user_id: user.id, requested_nickname: nickname }).select('id,requested_nickname,status,reviewer_note,created_at').single();
+        if (result.error) {
+            var pending = await sb.from('nickname_change_requests').select('id,requested_nickname,status,reviewer_note,created_at').eq('user_id', user.id).eq('status', 'pending').maybeSingle();
+            if (!pending.error && pending.data) { requests = pending.data; renderNicknameRequest(); note('nickname-note', 'You already have a request waiting for review.', true); return; }
+            note('nickname-note', result.error.message, true); return;
+        }
+        requests = result.data;
+        $('nickname-input').value = '';
+        renderNicknameRequest();
+        note('nickname-note', 'Request saved. Use the contact link and include its request number.');
+    });
+    $('email-form').addEventListener('submit', async function (event) {
+        event.preventDefault();
+        var result = await sb.auth.updateUser({ email: $('account-email').value.trim() });
+        note('email-note', result.error ? result.error.message : 'Check your new email address and confirm the change.', !!result.error);
+    });
+    $('password-form').addEventListener('submit', async function (event) {
+        event.preventDefault();
+        var password = $('account-password').value;
+        if (password.length < 8 || password !== $('account-password-confirm').value) { note('password-note', 'Use at least 8 characters and make both passwords match.', true); return; }
+        var result = await sb.auth.updateUser({ password: password });
+        if (result.error) { note('password-note', result.error.message, true); return; }
+        $('password-form').reset();
+        note('password-note', 'Password updated.');
+    });
+})();
+</script>
+<script src="nav-icons.js"></script>
+<script src="ccg-guide.js" defer></script>
+<script src="app.js" defer></script>
+</body>
+</html>
+
+

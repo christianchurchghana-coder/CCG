@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bible | Christian Church of Ghana</title>
+<meta name="description" content="Read the Bible online. Browse by book and chapter or look up any verse. Christian Church of Ghana, Accra.">
+<meta name="robots" content="index,follow">
+<link rel="icon" type="image/png" href="images/ccg-icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="app.css">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1b2a4a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="application-name" content="CCG">
+<meta name="apple-mobile-web-app-title" content="CCG">
+<link rel="apple-touch-icon" href="images/ccg-icon-180.png">
+
+<style>
+/* Bible page styles */
+.bible-hero { background: linear-gradient(160deg, var(--indigo) 0%, var(--indigo-dark) 100%); color: var(--paper); text-align: center; padding: 3rem 1.5rem 3.4rem; position: relative; }
+.bible-hero::after { content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 7px; background: var(--kente-stripe); background-size: 220px 100%; }
+.bible-hero h1 { font-family: var(--font-display); font-size: 2.4rem; margin: 0 0 0.5rem; }
+.bible-hero p { margin: 0 auto; max-width: 520px; color: rgba(255, 253, 248, 0.85); line-height: 1.6; }
+
+.bible-wrap { max-width: 820px; margin: 0 auto; padding: 2rem 1.5rem 3.5rem; }
+
+.bible-controls { background: var(--paper); border-radius: var(--radius-md); box-shadow: var(--shadow-card); padding: 1.4rem 1.5rem; margin-top: -2.2rem; position: relative; z-index: 2; }
+.control-row { display: grid; grid-template-columns: 2fr 1fr 1.2fr; gap: 0.9rem; }
+.control-row label, .lookup-row label { display: block; font-weight: 600; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.35rem; }
+.control-row select, .lookup-row input { width: 100%; padding: 0.7rem 0.8rem; font-family: var(--font-body); font-size: 0.97rem; border: 1.5px solid var(--line); border-radius: var(--radius-sm); background: var(--parchment); color: var(--ink); }
+.control-row select:focus, .lookup-row input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201, 151, 30, 0.2); background: var(--paper); }
+.lookup-row { display: flex; gap: 0.7rem; align-items: flex-end; margin-top: 1rem; }
+.lookup-row > div { flex: 1; }
+.btn-primary { padding: 0.72rem 1.4rem; border: none; border-radius: var(--radius-sm); background: var(--indigo); color: var(--paper); font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: background 0.15s ease; white-space: nowrap; }
+.btn-primary:hover { background: var(--indigo-dark); }
+
+.reader { background: var(--paper); border-radius: var(--radius-md); box-shadow: var(--shadow-soft); margin-top: 1.5rem; padding: 2rem 2.2rem 1.6rem; border-top: 4px solid var(--gold); }
+.reader-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--line); }
+.reader-title { font-family: var(--font-display); font-size: 1.7rem; color: var(--indigo); margin: 0; }
+.reader-version { font-size: 0.82rem; color: var(--muted); margin: 0.25rem 0 0; }
+.tools { display: flex; gap: 0.4rem; }
+.tool-btn { min-width: 38px; height: 38px; padding: 0 0.7rem; border: 1.5px solid var(--line); border-radius: var(--radius-sm); background: var(--parchment); color: var(--indigo); font-weight: 700; font-family: var(--font-body); cursor: pointer; font-size: 0.9rem; }
+.tool-btn:hover { border-color: var(--gold); }
+.tool-btn[aria-pressed="true"] { background: var(--indigo); color: var(--paper); border-color: var(--indigo); }
+.tool-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* ---------- Verses: one verse per line, numbers in a neat left gutter ---------- */
+.verses { font-family: var(--font-display); font-size: 1.15rem; line-height: 1.8; color: var(--ink); text-align: left; }
+.verses p { margin: 0; }
+.verse { display: block; position: relative; margin: 0 -0.6rem; padding: 0.3rem 0.6rem 0.3rem 3.1rem; border-radius: 6px; cursor: pointer; transition: background 0.12s ease; text-wrap: pretty; }
+.verse:hover { background: rgba(201, 151, 30, 0.1); }
+.verse.selected { background: rgba(201, 151, 30, 0.28); }
+.verse sup { position: absolute; left: 0.6rem; top: calc(0.3rem + 0.5em); width: 1.9rem; text-align: right; font-family: var(--font-body); font-weight: 700; font-size: 0.7rem; line-height: 1; color: var(--rust); vertical-align: baseline; }
+
+/* Paragraph view: verses flow together as running text */
+.verses.is-paragraph { line-height: 1.95; }
+.verses.is-paragraph p { margin: 0 0 0.15rem; }
+.verses.is-paragraph .verse { display: inline; position: static; margin: 0; padding: 0.1rem 0.15rem; border-radius: 4px; }
+.verses.is-paragraph .verse sup { position: static; width: auto; font-size: 0.68em; margin-right: 0.3em; vertical-align: super; }
+
+.reader-state { text-align: center; color: var(--muted); padding: 2.5rem 1rem; line-height: 1.6; }
+.reader-state .spinner { margin: 0 auto 1rem; }
+.reader-state.error { color: var(--secondary-red); }
+.reader-state button { margin-top: 0.9rem; }
+.regional-bible-card { padding: 1.35rem; border: 1px solid rgba(31,92,75,.2); border-radius: var(--radius-sm); background: linear-gradient(135deg,#f5faf7,#fff); text-align: center; }
+.regional-bible-card h3 { margin: 0 0 .45rem; color: var(--indigo); font-family: var(--font-display); }
+.regional-bible-card p { color: #59616d; line-height: 1.55; }
+.regional-bible-link { display: inline-flex; min-height: 44px; align-items: center; justify-content: center; padding: .65rem 1rem; border-radius: var(--radius-sm); background: var(--green); color: #fff; font-weight: 700; text-decoration: none; }
+.regional-bible-link:hover { background: #174737; }
+
+.reader-foot { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid var(--line); flex-wrap: wrap; }
+.nav-btn { padding: 0.7rem 1.2rem; border: 1.5px solid var(--indigo); border-radius: var(--radius-sm); background: transparent; color: var(--indigo); font-weight: 600; font-family: var(--font-body); cursor: pointer; font-size: 0.93rem; }
+.nav-btn:hover:not(:disabled) { background: var(--indigo); color: var(--paper); }
+.nav-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.select-bar { display: none; align-items: center; gap: 0.8rem; font-size: 0.9rem; color: var(--muted); }
+.select-bar.show { display: flex; }
+.select-bar button { padding: 0.45rem 0.9rem; border: 1.5px solid var(--green); border-radius: var(--radius-sm); background: transparent; color: var(--green); font-weight: 600; font-family: var(--font-body); cursor: pointer; }
+.select-bar button:hover { background: var(--green); color: var(--paper); }
+.attribution { text-align: center; font-size: 0.8rem; color: #7a808c; margin-top: 1.3rem; }
+
+@media (max-width: 640px) {
+    .control-row { grid-template-columns: 1fr 1fr; }
+    .control-row > div:first-child { grid-column: 1 / -1; }
+    .reader { padding: 1.5rem 1.2rem 1.3rem; }
+    .verses { font-size: 1.08rem; }
+    .verse { padding-left: 2.6rem; }
+    .verse sup { width: 1.5rem; }
+    .bible-hero h1 { font-size: 2rem; }
+    .lookup-row { flex-direction: column; align-items: stretch; }
+    .reader-foot { justify-content: center; }
+    .select-bar { order: -1; width: 100%; justify-content: center; }
+}
+</style>
+</head>
+<body>
+<a href="#bible-main" class="skip-link">Skip to content</a>
+<div id="preloader"><div class="spinner"></div></div>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="logo">
+            <a href="index.html"><img src="images/church-logo.png" alt="CCG logo" class="church-logo-img"><span>CCG</span></a>
+        </div>
+        <nav class="main-nav" id="main-nav" aria-label="Primary">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="others.html">Others</a></li>
+                <li><a href="social.html">Follow Us</a></li>
+                <li><a href="index.html#welcome">About Us</a></li>
+                <li><a href="index.html#sermons">Sermons</a></li>
+                <li><a href="prayer.html">Live Prayer</a></li>
+                <li><a href="bible.html" aria-current="page">Bible</a></li>
+                <li><a href="index.html#events">Events</a></li>
+                <li><a href="index.html#community">Community</a></li>
+                <li id="auth-link-container"><a href="login.html" id="nav-login-link">Login / Register</a></li>
+                <li><a href="give.html">Give</a></li>
+                <li><a href="mailto:christianchurchghana@gmail.com">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+    </div>
+</header>
+
+<main id="bible-main">
+    <section class="bible-hero">
+        <div class="container">
+            <h1>Read the Bible</h1>
+            <p>Browse by book and chapter, or jump straight to any verse.</p>
+        </div>
+    </section>
+
+    <div class="bible-wrap">
+        <section class="bible-streak-card" aria-labelledby="bible-streak-title">
+            <div class="bible-streak-icon" aria-hidden="true">🔥</div>
+            <div><h2 id="bible-streak-title">Your Bible reading streak</h2><p id="bible-streak-value" aria-live="polite">Open a chapter to begin today’s reading.</p></div>
+        </section>
+        <section class="bible-controls" aria-label="Choose passage">
+            <div class="control-row">
+                <div>
+                    <label for="book-select">Book</label>
+                    <select id="book-select"></select>
+                </div>
+                <div>
+                    <label for="chapter-select">Chapter</label>
+                    <select id="chapter-select"></select>
+                </div>
+                <div>
+                    <label for="version-select">Version</label>
+                    <select id="version-select">
+                        <option value="kjv">King James (KJV)</option>
+                        <option value="web">World English (WEB)</option>
+                        <option value="asv">American Standard (ASV)</option>
+                        <option value="twi">Akuapem Twi (read online)</option>
+                        <option value="ga">Ga (read online)</option>
+                    </select>
+                </div>
+            </div>
+            <form class="lookup-row" id="lookup-form">
+                <div>
+                    <label for="lookup-input">Go to a verse</label>
+                    <input type="text" id="lookup-input" placeholder="e.g. John 3:16 or Psalm 23" autocomplete="off">
+                </div>
+                <button type="submit" class="btn-primary">Go</button>
+            </form>
+        </section>
+
+        <article class="reader" aria-live="polite">
+            <div class="reader-head">
+                <div>
+                    <h2 class="reader-title" id="reader-title">Genesis 1</h2>
+                    <p class="reader-version" id="reader-version"></p>
+                </div>
+                <div class="tools" role="group" aria-label="Reading options">
+                    <button type="button" class="tool-btn" id="layout-btn" aria-pressed="false" title="Switch between one verse per line and running paragraph" aria-label="Paragraph view">&para;</button>
+                    <button type="button" class="tool-btn" id="font-down" aria-label="Smaller text">A&minus;</button>
+                    <button type="button" class="tool-btn" id="font-up" aria-label="Larger text">A+</button>
+                </div>
+            </div>
+
+            <div id="reader-body"></div>
+
+            <div class="reader-foot">
+                <button type="button" class="nav-btn" id="prev-btn">&larr; Previous</button>
+                <div class="select-bar" id="select-bar">
+                    <span id="select-count"></span>
+                    <button type="button" id="copy-btn">Copy</button>
+                </div>
+                <button type="button" class="nav-btn" id="next-btn">Next &rarr;</button>
+            </div>
+        </article>
+
+        <p class="attribution">English versions are provided by bible-api.com. Akuapem Twi and Ga chapters open in Bible.com’s online reader.</p>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-stripe"></div>
+    <div class="container footer-content">
+        <div>
+            <h3>Christian Church of Ghana</h3>
+            <p>A community growing in faith and love.</p>
+        </div>
+        <div>
+            <h3>Contact Us</h3>
+            <p>Teshie Tesaco, Accra, Ghana</p>
+            <p>Email: <a href="mailto:christianchurchghana@gmail.com">christianchurchghana@gmail.com</a></p>
+            <p>Phone: <a href="tel:+233548221004">+233 54 822 1004</a></p>
+        </div>
+    </div>
+    <div class="footer-bottom container">&copy; 2026 Christian Church of Ghana. All Rights Reserved.</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="supabase-client.js"></script>
+<script src="presence.js"></script>
+<script src="site.js"></script>
+<script src="users.js"></script>
+<script>
+(function () {
+    'use strict';
+
+    var API = 'https://bible-api.com/';
+    var STORAGE_KEY = 'church_bible_state';
+    var streakRequest = 0;
+
+    function streakDate() { return new Date().toISOString().slice(0, 10); }
+    function showBibleStreak(streak, savedWhere) {
+        var box = $('bible-streak-value');
+        if (!box || !streak) return;
+        var current = Number(streak.current_days) || 1;
+        var best = Number(streak.best_days) || current;
+        box.textContent = '🔥 ' + current + ' day' + (current === 1 ? '' : 's') + ' in a row · best ' + best + ' day' + (best === 1 ? '' : 's') + (savedWhere ? ' · ' + savedWhere : '');
+    }
+    function recordBibleReading() {
+        var request = ++streakRequest;
+        var today = streakDate();
+        var ccg = window.CCG || {};
+        var client = ccg.supabase;
+        Promise.resolve(client ? client.auth.getUser() : null).then(function (auth) {
+            var user = auth && auth.data && auth.data.user;
+            if (user && client) {
+                return client.rpc('record_bible_reading').then(function (result) {
+                    if (request !== streakRequest) return;
+                    if (result.error) throw result.error;
+                    var row = Array.isArray(result.data) ? result.data[0] : result.data;
+                    if (row) { showBibleStreak(row, 'saved to your account'); return; }
+                    throw new Error('Streak response was empty');
+                }).catch(function () { recordLocalStreak(today, user.id, request); });
+            }
+            recordLocalStreak(today, 'guest', request);
+        }).catch(function () { recordLocalStreak(today, 'guest', request); });
+    }
+    function recordLocalStreak(today, account, request) {
+        if (request !== streakRequest) return;
+        var key = 'ccg_bible_streak_' + account;
+        var saved;
+        try { saved = JSON.parse(localStorage.getItem(key) || 'null'); } catch (_) { saved = null; }
+        var current = saved && Number(saved.current_days) || 0;
+        var best = saved && Number(saved.best_days) || 0;
+        if (!saved || saved.last_read_on !== today) {
+            var yesterday = new Date(Date.parse(today + 'T00:00:00Z') - 86400000).toISOString().slice(0, 10);
+            current = saved && saved.last_read_on === yesterday ? current + 1 : 1;
+            best = Math.max(best, current);
+            saved = { current_days: current, best_days: best, last_read_on: today };
+            try { localStorage.setItem(key, JSON.stringify(saved)); } catch (_) { /* Private browsing may disable storage. */ }
+        }
+        showBibleStreak(saved, account === 'guest' ? 'saved on this device' : 'saved on this device');
+    }
+
+    var BOOKS = [
+        ['Genesis', 50], ['Exodus', 40], ['Leviticus', 27], ['Numbers', 36], ['Deuteronomy', 34],
+        ['Joshua', 24], ['Judges', 21], ['Ruth', 4], ['1 Samuel', 31], ['2 Samuel', 24],
+        ['1 Kings', 22], ['2 Kings', 25], ['1 Chronicles', 29], ['2 Chronicles', 36], ['Ezra', 10],
+        ['Nehemiah', 13], ['Esther', 10], ['Job', 42], ['Psalms', 150], ['Proverbs', 31],
+        ['Ecclesiastes', 12], ['Song of Solomon', 8], ['Isaiah', 66], ['Jeremiah', 52], ['Lamentations', 5],
+        ['Ezekiel', 48], ['Daniel', 12], ['Hosea', 14], ['Joel', 3], ['Amos', 9],
+        ['Obadiah', 1], ['Jonah', 4], ['Micah', 7], ['Nahum', 3], ['Habakkuk', 3],
+        ['Zephaniah', 3], ['Haggai', 2], ['Zechariah', 14], ['Malachi', 4],
+        ['Matthew', 28], ['Mark', 16], ['Luke', 24], ['John', 21], ['Acts', 28],
+        ['Romans', 16], ['1 Corinthians', 16], ['2 Corinthians', 13], ['Galatians', 6], ['Ephesians', 6],
+        ['Philippians', 4], ['Colossians', 4], ['1 Thessalonians', 5], ['2 Thessalonians', 3], ['1 Timothy', 6],
+        ['2 Timothy', 4], ['Titus', 3], ['Philemon', 1], ['Hebrews', 13], ['James', 5],
+        ['1 Peter', 5], ['2 Peter', 3], ['1 John', 5], ['2 John', 1], ['3 John', 1],
+        ['Jude', 1], ['Revelation', 22]
+    ];
+    var NT_START = 39;
+
+    var $ = function (id) { return document.getElementById(id); };
+    var bookSel = $('book-select'), chapterSel = $('chapter-select'), versionSel = $('version-select');
+    var body = $('reader-body'), titleEl = $('reader-title'), versionEl = $('reader-version');
+    var prevBtn = $('prev-btn'), nextBtn = $('next-btn'), layoutBtn = $('layout-btn');
+    var selectBar = $('select-bar'), selectCount = $('select-count'), copyBtn = $('copy-btn');
+
+    var state = { book: 0, chapter: 1, version: 'kjv', fontSize: 1.15, paragraph: false };
+    var cache = {};
+    var requestId = 0;
+    var currentReference = '';
+    var lastLookup = '';
+
+    /* ---------- storage ---------- */
+    function loadState() {
+        try {
+            var saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        if (saved && typeof saved === 'object') {
+                if (saved.book >= 0 && saved.book < BOOKS.length) { state.book = saved.book; }
+                if (saved.chapter >= 1 && saved.chapter <= BOOKS[state.book][1]) { state.chapter = saved.chapter; }
+                if (/^(kjv|web|asv|twi|ga)$/.test(saved.version)) { state.version = saved.version; }
+                if (saved.fontSize >= 0.95 && saved.fontSize <= 1.8) { state.fontSize = saved.fontSize; }
+                state.paragraph = saved.paragraph === true;
+            }
+        } catch (e) { /* storage unavailable */ }
+    }
+    function saveState() {
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) { /* ignore */ }
+    }
+
+    /* ---------- selects ---------- */
+    function fillBooks() {
+        var ot = document.createElement('optgroup'); ot.label = 'Old Testament';
+        var nt = document.createElement('optgroup'); nt.label = 'New Testament';
+        BOOKS.forEach(function (b, i) {
+            var opt = document.createElement('option');
+            opt.value = i;
+            opt.textContent = b[0];
+            (i < NT_START ? ot : nt).appendChild(opt);
+        });
+        bookSel.appendChild(ot);
+        bookSel.appendChild(nt);
+    }
+    function fillChapters() {
+        chapterSel.innerHTML = '';
+        for (var c = 1; c <= BOOKS[state.book][1]; c++) {
+            var opt = document.createElement('option');
+            opt.value = c;
+            opt.textContent = c;
+            chapterSel.appendChild(opt);
+        }
+    }
+    function applyLayout() {
+        layoutBtn.setAttribute('aria-pressed', String(state.paragraph));
+        var verses = body.querySelector('.verses');
+        if (verses) {
+            verses.classList.toggle('is-paragraph', state.paragraph);
+            verses.style.fontSize = state.fontSize + 'rem';
+        }
+    }
+    function syncControls() {
+        bookSel.value = state.book;
+        fillChapters();
+        chapterSel.value = state.chapter;
+        versionSel.value = state.version;
+        prevBtn.disabled = (state.book === 0 && state.chapter === 1);
+        nextBtn.disabled = (state.book === BOOKS.length - 1 && state.chapter === BOOKS[state.book][1]);
+        applyLayout();
+    }
+
+    /* ---------- rendering ---------- */
+    function showState(html, isError) {
+        body.innerHTML = '<div class="reader-state' + (isError ? ' error' : '') + '">' + html + '</div>';
+        clearSelection();
+    }
+    function showLoading() {
+        showState('<div class="spinner" aria-hidden="true"></div>Loading&hellip;');
+    }
+    function showError(message, retry) {
+        showState('<p></p>', true);
+        body.querySelector('p').textContent = message;
+        if (retry) {
+            var btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'btn-primary';
+            btn.textContent = 'Try again';
+            btn.addEventListener('click', retry);
+            body.firstChild.appendChild(btn);
+        }
+    }
+    function render(data) {
+        var verses = data && data.verses;
+        if (!verses || !verses.length) { showError('No verses were found for that passage.'); return; }
+        currentReference = data.reference || '';
+        titleEl.textContent = currentReference;
+        versionEl.textContent = data.translation_name || '';
+        document.title = currentReference + ' | Bible | Christian Church of Ghana';
+
+        var wrap = document.createElement('div');
+        wrap.className = 'verses' + (state.paragraph ? ' is-paragraph' : '');
+        wrap.style.fontSize = state.fontSize + 'rem';
+        var p = document.createElement('p');
+        verses.forEach(function (v) {
+            var span = document.createElement('span');
+            span.className = 'verse';
+            span.tabIndex = 0;
+            span.setAttribute('role', 'button');
+            span.dataset.verse = v.verse;
+            var sup = document.createElement('sup');
+            sup.textContent = v.verse;
+            span.appendChild(sup);
+            span.appendChild(document.createTextNode(String(v.text).replace(/\s+/g, ' ').trim() + ' '));
+            p.appendChild(span);
+        });
+        wrap.appendChild(p);
+        body.innerHTML = '';
+        body.appendChild(wrap);
+        clearSelection();
+        recordBibleReading();
+    }
+
+    var BIBLE_BOOK_CODES = ['GEN','EXO','LEV','NUM','DEU','JOS','JDG','RUT','1SA','2SA','1KI','2KI','1CH','2CH','EZR','NEH','EST','JOB','PSA','PRO','ECC','SNG','ISA','JER','LAM','EZK','DAN','HOS','JOL','AMO','OBA','JON','MIC','NAM','HAB','ZEP','HAG','ZEC','MAL','MAT','MRK','LUK','JHN','ACT','ROM','1CO','2CO','GAL','EPH','PHP','COL','1TH','2TH','1TI','2TI','TIT','PHM','HEB','JAS','1PE','2PE','1JN','2JN','3JN','JUD','REV'];
+    function showRegionalBible(query) {
+        var versionId = state.version === 'twi' ? '1631' : '2708';
+        var versionName = state.version === 'twi' ? 'Akuapem Twi Nkwa Asɛm' : 'ŊMALƐ KRƆŊKRƆŊ LƐ (Ga)';
+        var bookIndex = state.book;
+        var chapter = state.chapter;
+        if (query) {
+            var match = String(query).match(/^(.+?)\s+(\d+)(?::\d+(?:-\d+)?)?\s*$/);
+            if (match) {
+                var sought = match[1].toLowerCase().replace(/\s+/g, ' ');
+                for (var i = 0; i < BOOKS.length; i++) {
+                    if (BOOKS[i][0].toLowerCase() === sought) { bookIndex = i; chapter = Number(match[2]); break; }
+                }
+            }
+        }
+        if (chapter < 1 || chapter > BOOKS[bookIndex][1]) { bookIndex = state.book; chapter = state.chapter; }
+        var code = BIBLE_BOOK_CODES[bookIndex];
+        var url = 'https://www.bible.com/bible/' + versionId + '/' + code + '.' + chapter;
+        titleEl.textContent = BOOKS[bookIndex][0] + ' ' + chapter;
+        versionEl.textContent = versionName + ' · hosted by Bible.com';
+        document.title = titleEl.textContent + ' | ' + versionName;
+        body.innerHTML = '';
+        var card = document.createElement('div');
+        card.className = 'regional-bible-card';
+        var heading = document.createElement('h3');
+        heading.textContent = versionName;
+        var note = document.createElement('p');
+        note.textContent = 'This edition is hosted online by Bible.com. Open the chapter in a new tab, then browse the full Bible in ' + (state.version === 'twi' ? 'Akuapem Twi' : 'Ga') + '.';
+        var link = document.createElement('a');
+        link.className = 'regional-bible-link';
+        link.href = url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.textContent = 'Read ' + BOOKS[bookIndex][0] + ' ' + chapter + ' in ' + (state.version === 'twi' ? 'Twi' : 'Ga');
+        card.appendChild(heading);
+        card.appendChild(note);
+        card.appendChild(link);
+        body.appendChild(card);
+        currentReference = titleEl.textContent;
+        clearSelection();
+    }
+
+    /* ---------- fetching ---------- */
+    function fetchPassage(query, onDone) {
+        var key = state.version + '|' + query.toLowerCase();
+        if (cache[key]) { onDone(cache[key]); return; }
+        var myId = ++requestId;
+        showLoading();
+        fetch(API + encodeURIComponent(query) + '?translation=' + state.version)
+            .then(function (res) {
+                if (res.status === 404) { throw new Error('notfound'); }
+                if (!res.ok) { throw new Error('http'); }
+                return res.json();
+            })
+            .then(function (data) {
+                if (myId !== requestId) { return; }
+                cache[key] = data;
+                onDone(data);
+            })
+            .catch(function (err) {
+                if (myId !== requestId) { return; }
+                if (err.message === 'notfound') {
+                    showError('We couldn\u2019t find that passage. Try something like \u201CJohn 3:16\u201D or \u201CPsalm 23\u201D.');
+                } else {
+                    showError('Couldn\u2019t load the text. Please check your internet connection.', function () { fetchPassage(query, onDone); });
+                }
+            });
+    }
+
+    function loadChapter() {
+        lastLookup = '';
+        syncControls();
+        saveState();
+        if (state.version === 'twi' || state.version === 'ga') { showRegionalBible(); return; }
+        fetchPassage(BOOKS[state.book][0] + ' ' + state.chapter, render);
+    }
+
+    /* ---------- navigation ---------- */
+    function goTo(book, chapter) {
+        state.book = book;
+        state.chapter = chapter;
+        loadChapter();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    prevBtn.addEventListener('click', function () {
+        if (state.chapter > 1) { goTo(state.book, state.chapter - 1); }
+        else if (state.book > 0) { goTo(state.book - 1, BOOKS[state.book - 1][1]); }
+    });
+    nextBtn.addEventListener('click', function () {
+        if (state.chapter < BOOKS[state.book][1]) { goTo(state.book, state.chapter + 1); }
+        else if (state.book < BOOKS.length - 1) { goTo(state.book + 1, 1); }
+    });
+    bookSel.addEventListener('change', function () { state.book = parseInt(bookSel.value, 10); state.chapter = 1; loadChapter(); });
+    chapterSel.addEventListener('change', function () { state.chapter = parseInt(chapterSel.value, 10); loadChapter(); });
+    versionSel.addEventListener('change', function () {
+        state.version = versionSel.value;
+        saveState();
+        if (state.version === 'twi' || state.version === 'ga') { showRegionalBible(lastLookup); return; }
+        if (lastLookup) { runLookup(lastLookup); } else { loadChapter(); }
+    });
+
+    /* ---------- verse lookup ---------- */
+    function runLookup(text) {
+        lastLookup = text;
+        saveState();
+        if (state.version === 'twi' || state.version === 'ga') { showRegionalBible(text); return; }
+        fetchPassage(text, function (data) {
+            render(data);
+            /* keep dropdowns in step when the passage maps to a known book */
+            var first = data.verses && data.verses[0];
+            if (first) {
+                for (var i = 0; i < BOOKS.length; i++) {
+                    if (BOOKS[i][0].toLowerCase() === String(first.book_name).toLowerCase()) {
+                        state.book = i; state.chapter = first.chapter;
+                        syncControls();
+                        saveState();
+                        break;
+                    }
+                }
+            }
+        });
+    }
+    $('lookup-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var text = $('lookup-input').value.trim();
+        if (text) { runLookup(text); }
+    });
+
+    /* ---------- display options ---------- */
+    function setFont(delta) {
+        state.fontSize = Math.min(1.8, Math.max(0.95, Math.round((state.fontSize + delta) * 100) / 100));
+        applyLayout();
+        saveState();
+    }
+    $('font-up').addEventListener('click', function () { setFont(0.1); });
+    $('font-down').addEventListener('click', function () { setFont(-0.1); });
+    layoutBtn.addEventListener('click', function () {
+        state.paragraph = !state.paragraph;
+        applyLayout();
+        saveState();
+    });
+
+    /* ---------- verse selection + copy ---------- */
+    function clearSelection() {
+        selectBar.classList.remove('show');
+        selectCount.textContent = '';
+    }
+    function updateSelectBar() {
+        var n = body.querySelectorAll('.verse.selected').length;
+        selectBar.classList.toggle('show', n > 0);
+        selectCount.textContent = n + (n === 1 ? ' verse selected' : ' verses selected');
+    }
+    function toggleVerse(el) {
+        el.classList.toggle('selected');
+        updateSelectBar();
+    }
+    body.addEventListener('click', function (e) {
+        var el = e.target.closest('.verse');
+        if (el) { toggleVerse(el); }
+    });
+    body.addEventListener('keydown', function (e) {
+        if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('verse')) {
+            e.preventDefault();
+            toggleVerse(e.target);
+        }
+    });
+    copyBtn.addEventListener('click', function () {
+        var chosen = Array.prototype.slice.call(body.querySelectorAll('.verse.selected'));
+        if (!chosen.length) { return; }
+        var nums = chosen.map(function (v) { return parseInt(v.dataset.verse, 10); });
+        var chapterRef = currentReference.replace(/:.*$/, '');
+        var label = chapterRef + ':' + (nums.length === 1 ? nums[0] : nums[0] + '-' + nums[nums.length - 1]);
+        var text = chosen.map(function (v) { return v.textContent.replace(/^\d+/, '').trim(); }).join(' ');
+        var out = '\u201C' + text + '\u201D \u2014 ' + label + ' (' + state.version.toUpperCase() + ')';
+        var done = function () {
+            copyBtn.textContent = 'Copied!';
+            setTimeout(function () { copyBtn.textContent = 'Copy'; }, 1500);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(out).then(done, function () { window.prompt('Copy this text:', out); });
+        } else {
+            window.prompt('Copy this text:', out);
+        }
+    });
+
+    /* ---------- init ---------- */
+    function init() {
+        try { if (typeof initializeAuthAndNav === 'function') { initializeAuthAndNav(); } } catch (e) { /* guest view */ }
+        fillBooks();
+        loadState();
+        var param = null;
+        try { param = new URLSearchParams(window.location.search).get('ref'); } catch (e) { /* old browser */ }
+        if (param) {
+            $('lookup-input').value = param;
+            syncControls();
+            runLookup(param);
+        } else if (state.version === 'twi' || state.version === 'ga') {
+            showRegionalBible();
+        } else {
+            loadChapter();
+        }
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();
+</script>
+<script src="nav-icons.js"></script>
+<script src="ccg-guide.js" defer></script>
+<script src="app.js" defer></script>
+</body>
+</html>
+
+

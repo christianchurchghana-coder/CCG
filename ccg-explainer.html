@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#172540">
+  <meta name="description" content="A short video introduction to the Christian Church of Ghana CCG app.">
+  <title>Meet CCG | Christian Church of Ghana</title>
+  <link rel="icon" href="images/ccg-icon-192.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="app.css">
+  <style>
+    .explainer-wrap{max-width:920px;margin:2rem auto;padding:1rem}.explainer-card{overflow:hidden;border:1px solid #ddd6c7;border-radius:26px;background:#fffdf8;box-shadow:0 18px 55px #14213a22}.explainer-top{padding:1.25rem 1.5rem;background:#172540;color:#fff}.explainer-top h1{margin:0;font-size:1.5rem}.explainer-top p{margin:.35rem 0 0;color:#d7e4ed}.explainer-stage{position:relative;background:#172540;aspect-ratio:16/9}.explainer-stage canvas{display:block;width:100%;height:100%}.explainer-caption{min-height:94px;padding:1rem 1.3rem 0;text-align:center}.explainer-caption h2{margin:0;color:#172540;font:700 clamp(1.15rem,3vw,1.7rem)/1.2 var(--font-display)}.explainer-caption p{margin:.45rem 0;color:#586273;font-size:.94rem}.explainer-controls{display:flex;justify-content:center;flex-wrap:wrap;gap:.65rem;padding:0 1rem 1.25rem}.explainer-controls button{min-height:44px;padding:.65rem 1rem;border:0;border-radius:11px;background:#1b2a4a;color:white;font-weight:700;cursor:pointer}.explainer-controls button.secondary{border:1px solid #d5d0c4;background:#fff;color:#1b2a4a}.explainer-status{min-height:1.2rem;text-align:center;color:#485364;font-size:.8rem}
+  </style>
+</head>
+<body>
+  <header class="site-header"><div class="container header-inner"><div class="logo"><a href="index.html"><img src="images/ccg-icon-192.png" alt="CCG logo"><span>CCG</span></a></div><nav class="main-nav"><ul><li><a href="index.html">Home</a></li><li><a href="others.html">Explore CCG</a></li></ul></nav></div></header>
+  <main class="explainer-wrap"><section class="explainer-card" aria-label="CCG app introduction video"><div class="explainer-top"><h1>Welcome to CCG</h1><p>A short introduction to the Christian Church of Ghana app</p></div><div class="explainer-stage"><canvas id="video" width="1280" height="720" aria-label="Animated CCG app introduction"></canvas></div><div class="explainer-caption" aria-live="polite"><h2 id="caption-title"></h2><p id="caption-copy"></p></div><div class="explainer-controls"><button id="play">▶ Play video</button><button class="secondary" id="download">↓ Create and download video</button><button class="secondary" id="restart">↺ Start over</button></div><p class="explainer-status" id="status" role="status">Press Play to begin. Export creates a WebM video in this browser.</p></section></main>
+  <script>
+  (function(){
+    const canvas=document.getElementById('video'),ctx=canvas.getContext('2d'),logo=new Image();logo.src='images/ccg-icon-512.png';
+    const scenes=[
+      ['Faith, together','Welcome to CCG — your church, connected in one place.'],
+      ['Read and reflect','Open the Bible for Scripture, daily reading, and a quiet moment with the Word.'],
+      ['Pray and grow','Find prayer, devotion, and faith-building resources whenever you need them.'],
+      ['Watch and learn','Explore sermons and teaching from Christian Church of Ghana.'],
+      ['Stay connected','See church events, celebrations, and community updates.'],
+      ['Your next step','Sign in, make a profile, and use CCG Guide when you need help finding a feature.'],
+      ['Come grow with us','CCG — a community growing in faith and love.']
+    ];
+    const colors=['#182745','#163f40','#253451','#252a49','#183e3a','#26374d','#192943'];
+    const total=28;let playing=false,start=0,frame=0,recorder=null,chunks=[];
+    function rounded(x,y,w,h,r,color){ctx.fillStyle=color;ctx.beginPath();ctx.roundRect(x,y,w,h,r);ctx.fill()}
+    function draw(t){const scene=Math.min(scenes.length-1,Math.floor(t/4));const local=(t%4)/4;const ease=1-Math.pow(1-local,3);ctx.clearRect(0,0,1280,720);const grad=ctx.createLinearGradient(0,0,1280,720);grad.addColorStop(0,colors[scene]);grad.addColorStop(1,scene===1?'#24745e':'#397564');ctx.fillStyle=grad;ctx.fillRect(0,0,1280,720);ctx.fillStyle='#ffffff0c';for(let i=0;i<9;i++){ctx.beginPath();ctx.arc((i*193+80)%1280,(i*117+30)%720,42+(i%3)*17,0,Math.PI*2);ctx.fill()}
+      rounded(94,82,1092,556,36,'#fffdf8');ctx.save();ctx.translate(640,350+(1-ease)*24);ctx.globalAlpha=Math.min(1,local*5+.15);rounded(484,155,312,312,62,'#f5f1e8');if(logo.complete&&logo.naturalWidth)ctx.drawImage(logo,510,181,260,260);else{ctx.fillStyle='#1b2a4a';ctx.font='bold 110px sans-serif';ctx.textAlign='center';ctx.fillText('CCG',640,350)}ctx.textAlign='center';ctx.fillStyle='#1b2a4a';ctx.font='700 54px Georgia,serif';ctx.fillText(scenes[scene][0],640,540);ctx.fillStyle='#5b6471';ctx.font='27px Arial,sans-serif';wrap(scenes[scene][1],640,590,900,36);ctx.restore();ctx.fillStyle='#d9e0de';ctx.fillRect(140,670,1000,5);ctx.fillStyle='#f0c866';ctx.fillRect(140,670,1000*Math.min(1,t/total),5);ctx.fillStyle='#ffffffcc';ctx.font='19px Arial,sans-serif';ctx.textAlign='right';ctx.fillText('CCG  •  '+String(Math.floor(t/60)).padStart(2,'0')+':'+String(Math.floor(t%60)).padStart(2,'0'),1138,695);document.getElementById('caption-title').textContent=scenes[scene][0];document.getElementById('caption-copy').textContent=scenes[scene][1];}
+    function wrap(text,x,y,max,line){const words=text.split(' ');let row='',rows=[];for(const word of words){const next=row?row+' '+word:word;if(ctx.measureText(next).width>max&&row){rows.push(row);row=word}else row=next}if(row)rows.push(row);rows.forEach((r,i)=>ctx.fillText(r,x,y+i*line))}
+    function tick(now){if(!playing)return;const t=(now-start)/1000;if(t>=total){playing=false;draw(total);document.getElementById('play').textContent='▶ Play again';return}draw(t);frame=requestAnimationFrame(tick)}
+    function play(){if(playing)return;playing=true;start=performance.now();document.getElementById('play').textContent='Playing…';document.getElementById('status').textContent='Playing the 28-second CCG introduction.';tick(start)}
+    document.getElementById('play').addEventListener('click',play);document.getElementById('restart').addEventListener('click',()=>{playing=false;cancelAnimationFrame(frame);draw(0);document.getElementById('play').textContent='▶ Play video';document.getElementById('status').textContent='Ready to play.'});
+    document.getElementById('download').addEventListener('click',()=>{if(!canvas.captureStream||!window.MediaRecorder){document.getElementById('status').textContent='Video export is not supported in this browser. You can still play the explainer here.';return}if(playing)return;chunks=[];const stream=canvas.captureStream(30);let mime='video/webm;codecs=vp9';if(!MediaRecorder.isTypeSupported(mime))mime='video/webm';try{recorder=new MediaRecorder(stream,{mimeType:mime})}catch(e){document.getElementById('status').textContent='This browser could not start video export.';return}recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};recorder.onstop=()=>{const blob=new Blob(chunks,{type:'video/webm'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='CCG-app-introduction.webm';a.click();setTimeout(()=>URL.revokeObjectURL(url),60000);stream.getTracks().forEach(track=>track.stop());document.getElementById('status').textContent='Your CCG app introduction video has been downloaded.'};recorder.start();document.getElementById('status').textContent='Creating the video now… please keep this page open for about 28 seconds.';playing=true;start=performance.now();tick(start);setTimeout(()=>{if(recorder&&recorder.state!=='inactive'){playing=false;cancelAnimationFrame(frame);draw(total);recorder.stop()}},total*1000+100)});
+    logo.onload=()=>draw(0);draw(0);
+  })();
+  </script>
+</body>
+</html>

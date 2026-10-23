@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Watch live services, sermons, and worship music from Christian ministers and Ghanaian gospel artists.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_GH">
+<meta property="og:site_name" content="Christian Church of Ghana">
+<meta property="og:title" content="Others: Live, Sermons &amp; Worship Music | Christian Church of Ghana">
+<meta property="og:description" content="Browse livestreams, sermons, Ghanaian gospel artists, and worship songs from Christian ministers.">
+<meta name="twitter:card" content="summary">
+<title>Others | Christian Church of Ghana</title>
+<link rel="icon" type="image/png" href="images/ccg-icon-192.png">
+<meta name="robots" content="index,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="app.css">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1b2a4a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="application-name" content="CCG">
+<meta name="apple-mobile-web-app-title" content="CCG">
+<link rel="apple-touch-icon" href="images/ccg-icon-180.png">
+
+<style>
+.others-hero { padding: 3rem 1.5rem; text-align: center; color: var(--paper); background: linear-gradient(160deg, var(--indigo), var(--indigo-dark)); border-bottom: 6px solid var(--gold); }
+.others-hero h1 { margin: 0 0 .6rem; color: var(--gold-light); font-family: var(--font-display); font-size: 2.4rem; }
+.others-hero p { max-width: 680px; margin: 0 auto; color: rgba(255,253,248,.88); }
+.others-section { padding-top: 2.8rem; padding-bottom: 2.8rem; }
+.others-section + .others-section { border-top: 1px solid var(--line); }
+.others-section h2 { text-align: center; color: var(--indigo); font-family: var(--font-display); margin: 0 0 .5rem; }
+.others-intro { max-width: 680px; text-align: center; color: var(--muted); margin: 0 auto 1.5rem; }
+.minister-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 245px), 1fr)); gap: 1rem; }
+.minister-card { min-width: 0; padding: 1.25rem; background: var(--paper); border: 1px solid var(--line); border-top: 4px solid var(--gold); border-radius: var(--radius-sm); box-shadow: 0 4px 15px rgba(0,0,0,.06); }
+.minister-photo-link { position: relative; isolation: isolate; display: grid; place-items: center; height: 230px; margin: -1.25rem -1.25rem .45rem; overflow: hidden; border-radius: var(--radius-sm) var(--radius-sm) 0 0; background: linear-gradient(135deg, var(--indigo), var(--green)); }
+.minister-photo-link::before { content: ""; position: absolute; z-index: 0; inset: -14px; background-image: var(--portrait-bg, linear-gradient(135deg, var(--indigo), var(--green))); background-position: center; background-size: cover; filter: blur(16px); opacity: .78; transform: scale(1.08); }
+.minister-photo { position: relative; z-index: 1; display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; filter: drop-shadow(0 5px 12px rgba(0,0,0,.24)); transition: transform .35s ease; }
+.minister-photo-link:hover .minister-photo { transform: scale(1.035); }
+.minister-photo-credit { display: block; margin: 0 -1.25rem .65rem; padding: .35rem .6rem; background: var(--paper); color: #59616d !important; text-align: right; font-size: .7rem; text-decoration: none !important; }
+.minister-photo-credit:hover { color: var(--indigo) !important; text-decoration: underline !important; }
+@media (max-width: 600px) { .minister-photo { height: 250px; } }
+.minister-card h3 { color: var(--indigo); margin: 0 0 .45rem; font-family: var(--font-display); font-size: 1.2rem; }
+.minister-card p { margin: 0 0 .9rem; color: var(--muted); font-size: .9rem; line-height: 1.5; }
+.minister-links { display: flex; flex-wrap: wrap; gap: .5rem; }
+.minister-links a { display: inline-flex; align-items: center; justify-content: center; min-height: 38px; padding: .5rem .75rem; border-radius: var(--radius-sm); background: var(--indigo); color: var(--paper); text-decoration: none; font-size: .82rem; font-weight: 600; }
+.minister-links a.secondary { background: transparent; color: var(--indigo); border: 1px solid var(--indigo); }
+.song-list { display: flex; flex-wrap: wrap; gap: .55rem; margin: .8rem 0 1rem; }
+.song-list a { display: inline-block; padding: .45rem .7rem; border-radius: 999px; background: rgba(201,151,30,.14); color: var(--indigo); text-decoration: none; font-size: .82rem; font-weight: 600; }
+.song-list a:hover, .minister-links a:hover { filter: brightness(1.08); text-decoration: underline; }
+.others-note { margin: 1rem 0 0; text-align: center; color: var(--muted); font-size: .82rem; }
+
+.local-gospel-shortcut { display:flex;justify-content:center;gap:.55rem;flex-wrap:wrap;margin:1.25rem auto 0; }
+.local-gospel-shortcut a { display:inline-flex;align-items:center;min-height:40px;padding:.5rem .9rem;border:1px solid rgba(255,253,248,.45);border-radius:999px;color:#fffdf8;text-decoration:none;font-size:.84rem;font-weight:600;transition:background .2s,transform .2s; }
+.local-gospel-shortcut a:hover { background:rgba(255,255,255,.12);transform:translateY(-2px); }
+.local-gospel-section { position:relative; }
+.local-gospel-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,245px),1fr));gap:1rem; }
+.local-artist-card { position:relative;overflow:hidden;min-width:0;padding:1.25rem;background:var(--paper);border:1px solid var(--line);border-top:4px solid var(--gold);border-radius:var(--radius-md);box-shadow:0 8px 26px rgba(18,29,51,.08); }
+.local-artist-card::before { content:"";position:absolute;top:0;right:0;width:92px;height:92px;border-radius:0 0 0 100%;background:linear-gradient(135deg,rgba(201,151,30,.18),rgba(31,92,75,.13)); }
+.local-artist-heading { position:relative;display:flex;align-items:center;gap:.85rem;margin-bottom:.8rem; }
+.local-artist-preview { position:relative;isolation:isolate;display:block;flex:0 0 76px;width:76px;height:76px;padding:0;overflow:hidden;border:0;border-radius:20px;background:linear-gradient(140deg,var(--indigo),var(--green));box-shadow:0 4px 12px rgba(18,29,51,.18);cursor:pointer;touch-action:pan-y; }
+.local-artist-preview img { display:block;width:100%;height:100%;object-fit:cover;transition:transform .35s ease,filter .35s ease; }
+.local-artist-preview:hover img,.local-artist-preview.is-holding img { transform:scale(1.09);filter:saturate(1.2); }
+.local-artist-preview::after { content:"";position:absolute;inset:auto 0 0;height:4px;background:var(--gold-light);transform:scaleX(0);transform-origin:left;pointer-events:none; }
+.local-artist-preview.is-holding::after { transform:scaleX(var(--hold-progress,0)); }
+.local-artist-preview .preview-hint { position:absolute;inset:auto 0 0;padding:.28rem .15rem;background:linear-gradient(transparent,rgba(10,17,32,.9));color:white;font:600 .62rem/1.25 "Work Sans",sans-serif;text-align:center; }
+.local-artist-preview:focus-visible { outline:3px solid var(--gold);outline-offset:3px; }
+.artist-preview-dialog { width:min(92vw,860px);max-width:860px;padding:1rem;border:1px solid var(--line);border-radius:18px;background:var(--paper);color:var(--indigo);box-shadow:0 24px 90px rgba(0,0,0,.45); }
+.artist-preview-dialog::backdrop { background:rgba(8,15,30,.78);backdrop-filter:blur(5px); }
+.artist-preview-dialog header { display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:.8rem; }
+.artist-preview-dialog h2 { margin:0;font:700 1.2rem var(--font-display); }
+.artist-preview-close { min-width:42px;min-height:42px;border:0;border-radius:50%;background:var(--indigo);color:white;font-size:1.35rem;cursor:pointer; }
+.artist-preview-frame { display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:12px;background:#101626; }
+.artist-preview-help { margin:.7rem 0 0;color:var(--muted);font-size:.8rem; }
+.local-artist-card h3 { margin:0;color:var(--indigo);font:700 1.15rem/1.2 var(--font-display); }
+.local-artist-origin { display:inline-flex;align-items:center;gap:.3rem;margin-top:.3rem;color:var(--green);font-size:.72rem;font-weight:700;letter-spacing:.045em;text-transform:uppercase; }
+.local-artist-card p { position:relative;min-height:2.8em;margin:.2rem 0 .9rem;color:var(--muted);font-size:.88rem;line-height:1.5; }
+.local-artist-card .minister-links { position:relative; }
+.local-artist-card .minister-links a { flex:1 1 auto; }
+.local-gospel-note { max-width:700px;margin:1.2rem auto 0;text-align:center;color:var(--muted);font-size:.82rem;line-height:1.5; }
+@media(prefers-reduced-motion:reduce) { .local-gospel-shortcut a,.local-artist-preview img { transition:none; } }
+
+</style>
+</head>
+<body>
+<a href="#others-main" class="skip-link">Skip to content</a>
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="logo"><a href="index.html"><img src="images/church-logo.png" alt="CCG logo" class="church-logo-img"><span>CCG</span></a></div>
+        <nav class="main-nav" id="main-nav" aria-label="Primary">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="others.html" aria-current="page">Others</a></li>
+                <li><a href="social.html">Follow Us</a></li>
+                <li><a href="index.html#welcome">About Us</a></li>
+                <li><a href="index.html#sermons">Sermons</a></li>
+                <li><a href="prayer.html">Live Prayer</a></li>
+                <li><a href="bible.html">Bible</a></li>
+                <li><a href="index.html#events">Events</a></li>
+                <li><a href="index.html#community">Community</a></li>
+                <li><a href="login.html">Login / Register</a></li>
+                <li><a href="give.html">Give</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-nav-toggle" aria-label="Open menu" aria-expanded="false"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
+    </div>
+</header>
+
+<main id="others-main">
+    <section class="others-hero">
+        <h1>Others</h1>
+        <p>Find livestreams, sermons, and worship songs from ministers and gospel artists.</p>
+    <nav class="local-gospel-shortcut" aria-label="Others page sections">
+        <a href="ccg-explainer.html">Watch the CCG app introduction</a>
+        <a href="#local-gospel">Ghanaian gospel artists</a>
+        <a href="#live">Live</a>
+        <a href="#minister-sermons">Sermons</a>
+        <a href="#worship-songs">Worship songs</a>
+    </nav>
+    </section>
+
+
+    <section class="container others-section local-gospel-section" id="local-gospel" aria-labelledby="local-gospel-title">
+        <h2 id="local-gospel-title">Ghanaian Gospel</h2>
+        <p class="others-intro">Celebrate Ghana’s gospel sound. Hold an artist image for two seconds to preview a video, or activate it once to open the preview.</p>
+        <div class="local-gospel-grid">
+            <article class="local-artist-card">
+                <div class="local-artist-heading"><button type="button" class="local-artist-preview" data-artist="Joe Mettle" data-video-id="W3eA5eATBGw" aria-label="Hold for two seconds to preview Joe Mettle, or activate to open preview"><img src="https://i.ytimg.com/vi/W3eA5eATBGw/hqdefault.jpg" alt="Joe Mettle in the Thank You official music video" loading="lazy" decoding="async"><span class="preview-hint" aria-hidden="true">Hold 2 sec</span></button><div><h3>Joe Mettle</h3><span class="local-artist-origin">Ghana · Worship</span></div></div>
+                <p>Worship albums, songs, and music ministry from Joe Mettle.</p>
+                <div class="minister-links"><a href="https://joemettlemusic.com/music/" target="_blank" rel="noopener noreferrer">Music catalogue</a><a class="secondary" href="https://joemettlemusic.com/" target="_blank" rel="noopener noreferrer">Official site</a></div>
+            </article>
+            <article class="local-artist-card">
+                <div class="local-artist-heading"><button type="button" class="local-artist-preview" data-artist="SK Frimpong" data-video-id="Xo0VGr5N100" aria-label="Hold for two seconds to preview SK Frimpong, or activate to open preview"><img src="https://i.ytimg.com/vi/Xo0VGr5N100/hqdefault.jpg" alt="SK Frimpong in Songs of Hope" loading="lazy" decoding="async"><span class="preview-hint" aria-hidden="true">Hold 2 sec</span></button><div><h3>SK Frimpong</h3><span class="local-artist-origin">Ghana · Praise</span></div></div>
+                <p>Find praise, prayer songs, and local worship from SK Frimpong.</p>
+                <div class="minister-links"><a href="https://www.youtube.com/@skfrimpong" target="_blank" rel="noopener noreferrer">Official YouTube</a><a class="secondary" href="https://www.youtube.com/@skfrimpong/videos" target="_blank" rel="noopener noreferrer">Latest videos</a></div>
+            </article>
+            <article class="local-artist-card">
+                <div class="local-artist-heading"><button type="button" class="local-artist-preview" data-artist="Ohemaa Perez" data-video-id="51zCN4xbfeU" aria-label="Hold for two seconds to preview Ohemaa Perez, or activate to open preview"><img src="https://i.ytimg.com/vi/51zCN4xbfeU/hqdefault.jpg" alt="Ohemaa Perez in a highlife medley" loading="lazy" decoding="async"><span class="preview-hint" aria-hidden="true">Hold 2 sec</span></button><div><h3>Ohemaa Perez</h3><span class="local-artist-origin">Ghana · Gospel</span></div></div>
+                <p>Watch Ohemaa Perez’s gospel songs, worship sessions, and ministrations.</p>
+                <div class="minister-links"><a href="https://www.youtube.com/@ohemaaperezmusic" target="_blank" rel="noopener noreferrer">Official YouTube</a><a class="secondary" href="https://www.youtube.com/@ohemaaperezmusic/videos" target="_blank" rel="noopener noreferrer">Latest videos</a></div>
+            </article>
+            <article class="local-artist-card">
+                <div class="local-artist-heading"><button type="button" class="local-artist-preview" data-artist="Diana Hamilton" data-video-id="i0sF0bTgh7M" aria-label="Hold for two seconds to preview Diana Hamilton, or activate to open preview"><img src="https://i.ytimg.com/vi/i0sF0bTgh7M/hqdefault.jpg" alt="Diana Hamilton in the Adom Grace official music video" loading="lazy" decoding="async"><span class="preview-hint" aria-hidden="true">Hold 2 sec</span></button><div><h3>Diana Hamilton</h3><span class="local-artist-origin">Ghana · Worship</span></div></div>
+                <p>Official music videos, live performances, and songs from Diana Hamilton.</p>
+                <div class="minister-links"><a href="https://www.dianahamilton.com/music-videos/" target="_blank" rel="noopener noreferrer">Music &amp; videos</a><a class="secondary" href="https://www.dianahamilton.com/home/" target="_blank" rel="noopener noreferrer">Official site</a></div>
+            </article>
+            <article class="local-artist-card">
+                <div class="local-artist-heading"><button type="button" class="local-artist-preview" data-artist="MOG Music" data-video-id="It7Q7veKA64" aria-label="Hold for two seconds to preview MOG Music, or activate to open preview"><img src="https://i.ytimg.com/vi/It7Q7veKA64/hqdefault.jpg" alt="MOG Music in Be Lifted Medley" loading="lazy" decoding="async"><span class="preview-hint" aria-hidden="true">Hold 2 sec</span></button><div><h3>MOG Music</h3><span class="local-artist-origin">Ghana · Gospel</span></div></div>
+                <p>Explore albums, singles, and worship music from MOG Music.</p>
+                <div class="minister-links"><a href="https://mogmusicofficial.com/music" target="_blank" rel="noopener noreferrer">Albums &amp; singles</a><a class="secondary" href="https://mogmusicofficial.com/" target="_blank" rel="noopener noreferrer">Official site</a></div>
+            </article>
+            <article class="local-artist-card">
+                <div class="local-artist-heading"><button type="button" class="local-artist-preview" data-artist="Ohemaa Mercy" data-video-id="bvpeur864TU" aria-label="Hold for two seconds to preview Ohemaa Mercy, or activate to open preview"><img src="https://i.ytimg.com/vi/bvpeur864TU/hqdefault.jpg" alt="Ohemaa Mercy in His Glory official video" loading="lazy" decoding="async"><span class="preview-hint" aria-hidden="true">Hold 2 sec</span></button><div><h3>Ohemaa Mercy</h3><span class="local-artist-origin">Ghana · Gospel</span></div></div>
+                <p>Find songs and worship from Ohemaa Mercy’s music ministry.</p>
+                <div class="minister-links"><a href="https://www.youtube.com/watch?v=bvpeur864TU" target="_blank" rel="noopener noreferrer">Official video</a><a class="secondary" href="https://ohemaamercy.com/" target="_blank" rel="noopener noreferrer">Official site</a></div>
+            </article>
+            <article class="local-artist-card">
+                <div class="local-artist-heading"><button type="button" class="local-artist-preview" data-artist="Celestine Donkor" data-video-id="c3GXB272F84" aria-label="Hold for two seconds to preview Celestine Donkor, or activate to open preview"><img src="https://i.ytimg.com/vi/c3GXB272F84/hqdefault.jpg" alt="Celestine Donkor in the Only You official video" loading="lazy" decoding="async"><span class="preview-hint" aria-hidden="true">Hold 2 sec</span></button><div><h3>Celestine Donkor</h3><span class="local-artist-origin">Ghana · Praise</span></div></div>
+                <p>Discover praise, worship, and music videos from Celestine Donkor.</p>
+                <div class="minister-links"><a href="https://www.youtube.com/@celestialtv" target="_blank" rel="noopener noreferrer">Celestial TV</a><a class="secondary" href="https://www.youtube.com/@celestialtv/videos" target="_blank" rel="noopener noreferrer">Latest videos</a></div>
+            </article>
+        </div>
+        <p class="local-gospel-note">Music and videos open on their artists’ own channels or websites. You can listen without signing in to this church site; the artist’s platform may have its own account or region requirements.</p>
+    </section>
+
+    <section class="container others-section" id="live">
+        <h2>Live</h2>
+        <p class="others-intro">Open the minister’s live page to see a current or scheduled broadcast.</p>
+        <div class="minister-grid">
+            <article class="minister-card"><a class="minister-photo-link" href="https://jerryeze.com/" target="_blank" rel="noopener noreferrer"><img class="minister-photo" src="https://jerryeze.com/wp-content/uploads/2025/01/AG8A9582.jpg" alt="Pastor Jerry Eze" loading="lazy" decoding="async"><span class="sr-only">Pastor Jerry Eze official website</span></a><a class="minister-photo-credit" href="https://jerryeze.com/" target="_blank" rel="noopener noreferrer">Photo: official website</a><h3>Pastor Jerry Eze</h3><p>Live prayers and ministry from Pastor Jerry Eze.</p><div class="minister-links"><a href="https://www.youtube.com/@PastorJerryEze/live" target="_blank" rel="noopener noreferrer">Watch live</a><a class="secondary" href="https://www.youtube.com/@PastorJerryEze" target="_blank" rel="noopener noreferrer">Channel</a></div></article>
+            <article class="minister-card"><a class="minister-photo-link" href="https://www.youtube.com/watch?v=7RQhmE6dtmU" target="_blank" rel="noopener noreferrer"><img class="minister-photo" src="https://i.ytimg.com/vi/7RQhmE6dtmU/hqdefault.jpg" alt="Apostle Joshua Selman preaching at a Koinonia Global miracle service" loading="lazy" decoding="async"><span class="sr-only">Official Koinonia Global video</span></a><a class="minister-photo-credit" href="https://www.youtube.com/watch?v=7RQhmE6dtmU" target="_blank" rel="noopener noreferrer">Image: Koinonia Global video</a><h3>Apostle Joshua Selman</h3><p>Koinonia Global livestreams and services with Apostle Joshua Selman.</p><div class="minister-links"><a href="https://www.youtube.com/@KoinoniaGlobal/live" target="_blank" rel="noopener noreferrer">Watch live</a><a class="secondary" href="https://media.koinoniaglobal.org/live/" target="_blank" rel="noopener noreferrer">Koinonia Live</a></div></article>
+            <article class="minister-card"><a class="minister-photo-link" href="https://dunsinoyekan.com/about/" target="_blank" rel="noopener noreferrer"><img class="minister-photo" src="https://i0.wp.com/dunsinoyekan.com/wp-content/uploads/2021/03/dunsin-oyekan-about.jpg?fit=691%2C1244&amp;ssl=1" alt="Dunsin Oyekan portrait" loading="lazy" decoding="async"><span class="sr-only">Dunsin Oyekan official website</span></a><a class="minister-photo-credit" href="https://dunsinoyekan.com/about/" target="_blank" rel="noopener noreferrer">Photo: official website</a><h3>Dunsin Oyekan</h3><p>Worship gatherings, live ministrations, and music.</p><div class="minister-links"><a href="https://www.youtube.com/@DunsinOyekan/live" target="_blank" rel="noopener noreferrer">Watch live</a><a class="secondary" href="https://dunsinoyekan.com/music/" target="_blank" rel="noopener noreferrer">Music</a></div></article>
+            <article class="minister-card"><a class="minister-photo-link" href="https://sunmisolaagbebi.com/about" target="_blank" rel="noopener noreferrer"><img class="minister-photo" src="https://sunmisolaagbebi.com/__l5e/assets-v1/4ebd2c95-1e0c-45c9-8dfc-9bdc23984c49/about-body.jpg" alt="Sunmisola Agbebi portrait" loading="lazy" decoding="async"><span class="sr-only">Sunmisola Agbebi official website</span></a><a class="minister-photo-credit" href="https://sunmisolaagbebi.com/about" target="_blank" rel="noopener noreferrer">Photo: official website</a><h3>Sunmisola Agbebi</h3><p>Worship sessions and live music from Sunmisola Agbebi.</p><div class="minister-links"><a href="https://www.youtube.com/@sunmisolaagbebi/live" target="_blank" rel="noopener noreferrer">Watch live</a><a class="secondary" href="https://sunmisolaagbebi.com/stream" target="_blank" rel="noopener noreferrer">Listen to music</a></div></article>
+        </div>
+    </section>
+
+    <section class="container others-section" id="minister-sermons">
+        <h2>Sermons &amp; Messages</h2>
+        <p class="others-intro">Browse messages and teaching from the ministers’ channels and official media pages.</p>
+        <div class="minister-grid">
+            <article class="minister-card"><a class="minister-photo-link" href="https://jerryeze.com/" target="_blank" rel="noopener noreferrer"><img class="minister-photo" src="https://jerryeze.com/wp-content/uploads/2025/01/AG8A9582.jpg" alt="Pastor Jerry Eze" loading="lazy" decoding="async"></a><a class="minister-photo-credit" href="https://jerryeze.com/" target="_blank" rel="noopener noreferrer">Photo: official website</a><h3>Pastor Jerry Eze</h3><p>Prayers, sermons, and recent messages.</p><div class="minister-links"><a href="https://www.youtube.com/@PastorJerryEze/videos" target="_blank" rel="noopener noreferrer">View messages</a></div></article>
+            <article class="minister-card"><a class="minister-photo-link" href="https://www.youtube.com/watch?v=7RQhmE6dtmU" target="_blank" rel="noopener noreferrer"><img class="minister-photo" src="https://i.ytimg.com/vi/7RQhmE6dtmU/hqdefault.jpg" alt="Apostle Joshua Selman preaching at a Koinonia Global miracle service" loading="lazy" decoding="async"></a><a class="minister-photo-credit" href="https://www.youtube.com/watch?v=7RQhmE6dtmU" target="_blank" rel="noopener noreferrer">Image: Koinonia Global video</a><h3>Apostle Joshua Selman</h3><p>Browse the Koinonia Global sermon archive.</p><div class="minister-links"><a href="https://media.koinoniaglobal.org/sermons/" target="_blank" rel="noopener noreferrer">Browse sermons</a><a class="secondary" href="https://media.koinoniaglobal.org/videos/" target="_blank" rel="noopener noreferrer">Latest videos</a></div></article>
+            <article class="minister-card"><a class="minister-photo-link" href="https://dunsinoyekan.com/about/" target="_blank" rel="noopener noreferrer"><img class="minister-photo" src="https://i0.wp.com/dunsinoyekan.com/wp-content/uploads/2021/03/dunsin-oyekan-about.jpg?fit=691%2C1244&amp;ssl=1" alt="Dunsin Oyekan portrait" loading="lazy" decoding="async"></a><a class="minister-photo-credit" href="https://dunsinoyekan.com/about/" target="_blank" rel="noopener noreferrer">Photo: official website</a><h3>Dunsin Oyekan</h3><p>Worship videos and ministry sessions.</p><div class="minister-links"><a href="https://www.youtube.com/@DunsinOyekan/videos" target="_blank" rel="noopener noreferrer">View videos</a></div></article>
+            <article class="minister-card"><a class="minister-photo-link" href="https://sunmisolaagbebi.com/about" target="_blank" rel="noopener noreferrer"><img class="minister-photo" src="https://sunmisolaagbebi.com/__l5e/assets-v1/4ebd2c95-1e0c-45c9-8dfc-9bdc23984c49/about-body.jpg" alt="Sunmisola Agbebi portrait" loading="lazy" decoding="async"></a><a class="minister-photo-credit" href="https://sunmisolaagbebi.com/about" target="_blank" rel="noopener noreferrer">Photo: official website</a><h3>Sunmisola Agbebi</h3><p>Messages, worship videos, and live sessions.</p><div class="minister-links"><a href="https://www.youtube.com/@sunmisolaagbebi/videos" target="_blank" rel="noopener noreferrer">View videos</a></div></article>
+        </div>
+    </section>
+
+    <section class="container others-section" id="worship-songs">
+        <h2>Worship Songs</h2>
+        <p class="others-intro">Listen to the artists’ featured songs and albums through their official music pages and videos.</p>
+        <div class="minister-grid">
+            <article class="minister-card">
+                <a class="minister-photo-link" href="https://dunsinoyekan.com/about/" target="_blank" rel="noopener noreferrer"><img class="minister-photo" src="https://i0.wp.com/dunsinoyekan.com/wp-content/uploads/2021/03/dunsin-oyekan-about.jpg?fit=691%2C1244&amp;ssl=1" alt="Dunsin Oyekan portrait" loading="lazy" decoding="async"></a><a class="minister-photo-credit" href="https://dunsinoyekan.com/about/" target="_blank" rel="noopener noreferrer">Photo: official website</a>
+                <h3>Dunsin Oyekan</h3>
+                <p>Featured songs and albums from the official music page.</p>
+                <div class="song-list">
+                    <a href="https://www.youtube.com/watch?v=KBDSSRnoXms" target="_blank" rel="noopener noreferrer">Kaabo (Welcome)</a>
+                    <a href="https://www.youtube.com/watch?v=Ul5mir4C7ig" target="_blank" rel="noopener noreferrer">Always God</a>
+                    <a href="https://www.youtube.com/watch?v=JMGVN6oTcGw" target="_blank" rel="noopener noreferrer">Ascend</a>
+                    <a href="https://www.youtube.com/watch?v=JaQl9bdBemE" target="_blank" rel="noopener noreferrer">With Joy</a>
+                </div>
+                <div class="minister-links"><a href="https://dunsinoyekan.com/music/" target="_blank" rel="noopener noreferrer">All albums &amp; songs</a></div>
+            </article>
+            <article class="minister-card">
+                <a class="minister-photo-link" href="https://sunmisolaagbebi.com/about" target="_blank" rel="noopener noreferrer"><img class="minister-photo" src="https://sunmisolaagbebi.com/__l5e/assets-v1/4ebd2c95-1e0c-45c9-8dfc-9bdc23984c49/about-body.jpg" alt="Sunmisola Agbebi portrait" loading="lazy" decoding="async"></a><a class="minister-photo-credit" href="https://sunmisolaagbebi.com/about" target="_blank" rel="noopener noreferrer">Photo: official website</a>
+                <h3>Sunmisola Agbebi</h3>
+                <p>Selected songs from Sunmisola’s official music catalogue.</p>
+                <div class="song-list">
+                    <a href="https://www.youtube.com/watch?v=h2herRxCHYc" target="_blank" rel="noopener noreferrer">Halleluyah</a>
+                    <a href="https://www.youtube.com/watch?v=Dak86UT5G_E" target="_blank" rel="noopener noreferrer">Koseunti</a>
+                    <a href="https://www.youtube.com/watch?v=28ErbUoG2Jw" target="_blank" rel="noopener noreferrer">My Daddy, My Daddy</a>
+                    <a href="https://sunmisolaagbebi.com/stream" target="_blank" rel="noopener noreferrer">More songs</a>
+                </div>
+                <div class="minister-links"><a href="https://sunmisolaagbebi.com/stream" target="_blank" rel="noopener noreferrer">Official music page</a></div>
+            </article>
+            <article class="minister-card">
+                <h3>More gospel worship</h3>
+                <p>Explore music by other ministers featured in worship collaborations.</p>
+                <div class="song-list">
+                    <a href="https://www.youtube.com/@mosesbliss" target="_blank" rel="noopener noreferrer">Moses Bliss</a>
+                    <a href="https://www.youtube.com/@LawrenceOyor" target="_blank" rel="noopener noreferrer">Lawrence Oyor</a>
+                    <a href="https://www.youtube.com/@YinkaOkeleye" target="_blank" rel="noopener noreferrer">Yinka Okeleye</a>
+                </div>
+                <div class="minister-links"><a href="https://www.youtube.com/watch?v=28ErbUoG2Jw" target="_blank" rel="noopener noreferrer">My Daddy, My Daddy — Sunmisola &amp; Lawrence Oyor</a></div>
+            </article>
+        </div>
+        <p class="others-note">Videos and music open on their original channels and official music pages.</p>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-stripe"></div>
+    <div class="container footer-content">
+        <div><h3>Christian Church of Ghana</h3><p>A community growing in faith and love.</p></div>
+        <div><h3>Contact Us</h3><p>Teshie Tesaco, Accra, Ghana</p><p>Email: <a href="mailto:christianchurchghana@gmail.com">christianchurchghana@gmail.com</a></p><p>Phone: <a href="tel:+233548221004">+233 54 822 1004</a></p></div>
+        <div><h3>Explore</h3><p><a href="index.html">Home</a></p><p><a href="index.html#community">Community</a></p><p><a href="bible.html">Bible</a></p></div>
+    </div>
+    <div class="footer-bottom container">&copy; <span id="year">2026</span> Christian Church of Ghana. All Rights Reserved.</div>
+</footer>
+<dialog class="artist-preview-dialog" aria-labelledby="artist-preview-title" aria-modal="true">
+    <header><h2 id="artist-preview-title">Artist video preview</h2><button type="button" class="artist-preview-close" aria-label="Close video preview">×</button></header>
+    <iframe class="artist-preview-frame" title="Artist video preview" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <p class="artist-preview-help">Video hosted by YouTube. Close this window to stop playback.</p>
+</dialog>
+<script>
+(function () {
+    var dialog = document.querySelector('.artist-preview-dialog');
+    var frame = dialog && dialog.querySelector('.artist-preview-frame');
+    var title = dialog && dialog.querySelector('#artist-preview-title');
+    var closeButton = dialog && dialog.querySelector('.artist-preview-close');
+    if (!dialog || !frame || !title) return;
+    var holdDelay = 2000;
+    var suppressClickUntil = 0;
+    var activeButton = null;
+    var timer = 0;
+    var animationFrame = 0;
+    var holdStarted = 0;
+
+    function resetHold(button) {
+        window.clearTimeout(timer);
+        window.cancelAnimationFrame(animationFrame);
+        timer = 0;
+        if (button) {
+            button.classList.remove('is-holding');
+            button.style.removeProperty('--hold-progress');
+        }
+    }
+
+    function animateHold(button) {
+        var progress = Math.min(1, (performance.now() - holdStarted) / holdDelay);
+        button.style.setProperty('--hold-progress', progress.toFixed(3));
+        if (progress < 1) animationFrame = window.requestAnimationFrame(function () { animateHold(button); });
+    }
+
+    function openPreview(button) {
+        resetHold(button);
+        activeButton = button;
+        suppressClickUntil = Date.now() + 700;
+        title.textContent = button.dataset.artist + ' video preview';
+        frame.title = button.dataset.artist + ' video preview';
+        frame.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(button.dataset.videoId) + '?autoplay=1&mute=1&playsinline=1&rel=0';
+        if (!dialog.open) dialog.showModal();
+    }
+
+    document.querySelectorAll('.local-artist-preview').forEach(function (button) {
+        button.addEventListener('pointerdown', function (event) {
+            if (event.button !== undefined && event.button !== 0) return;
+            resetHold(button);
+            holdStarted = performance.now();
+            button.classList.add('is-holding');
+            animateHold(button);
+            timer = window.setTimeout(function () { openPreview(button); }, holdDelay);
+        });
+        ['pointerup', 'pointercancel', 'pointerleave'].forEach(function (eventName) {
+            button.addEventListener(eventName, function () { resetHold(button); });
+        });
+        button.addEventListener('contextmenu', function (event) { event.preventDefault(); });
+        button.addEventListener('click', function () {
+            if (Date.now() < suppressClickUntil) return;
+            openPreview(button);
+        });
+    });
+
+    function closePreview() {
+        dialog.close();
+        frame.src = 'about:blank';
+        if (activeButton) activeButton.focus();
+        activeButton = null;
+    }
+    closeButton.addEventListener('click', closePreview);
+    dialog.addEventListener('click', function (event) { if (event.target === dialog) closePreview(); });
+    dialog.addEventListener('close', function () { frame.src = 'about:blank'; });
+    document.addEventListener('keydown', function (event) { if (event.key === 'Escape' && dialog.open) closePreview(); });
+}());
+</script>
+<script>
+document.querySelectorAll('.minister-photo-link .minister-photo').forEach(function (image) {
+    var source = image.currentSrc || image.src;
+    image.parentElement.style.setProperty('--portrait-bg', 'url("' + source.replace(/"/g, '%22') + '")');
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script><script src="supabase-client.js"></script><script src="presence.js"></script><script src="site.js"></script>
+<script src="nav-icons.js"></script>
+<script src="ccg-guide.js" defer></script>
+<script src="app.js" defer></script>
+</body>
+</html>
+
+

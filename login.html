@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login | Christian Church of Ghana</title>
+<meta name="description" content="Sign in or create an account to connect with the Christian Church of Ghana community.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" type="image/png" href="images/ccg-icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="app.css">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1b2a4a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="application-name" content="CCG">
+<meta name="apple-mobile-web-app-title" content="CCG">
+<link rel="apple-touch-icon" href="images/ccg-icon-180.png">
+
+<!-- Google OAuth is handled securely by Supabase Auth. -->
+
+<style>
+/* Login / register page extras */
+.auth-form { max-width: 460px; }
+.auth-view[hidden] { display: none !important; }
+
+.auth-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; margin: 0.5rem 0 1.6rem; background: var(--parchment); border: 1.5px solid var(--line); border-radius: var(--radius-sm); }
+.auth-tab { border: none; background: transparent; padding: 0.6rem 0.5rem; border-radius: 6px; font-family: var(--font-body); font-weight: 600; font-size: 0.92rem; color: var(--muted); cursor: pointer; transition: background 0.15s ease, color 0.15s ease; }
+.auth-tab:hover { color: var(--indigo); }
+.auth-tab[aria-selected="true"] { background: var(--indigo); color: var(--paper); }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+.optional { font-weight: 400; color: var(--muted); }
+
+.strength { height: 5px; margin-top: 0.55rem; background: var(--line); border-radius: 3px; overflow: hidden; }
+.strength span { display: block; height: 100%; width: 0; background: var(--secondary-red); transition: width 0.2s ease, background 0.2s ease; }
+.strength-text { margin: 0.3rem 0 0; font-size: 0.78rem; color: var(--muted); min-height: 1.1em; }
+
+.terms { display: flex; align-items: flex-start; gap: 0.55rem; font-size: 0.85rem; color: var(--muted); line-height: 1.45; cursor: pointer; }
+.terms input { margin-top: 0.2rem; accent-color: var(--green); width: 16px; height: 16px; flex-shrink: 0; }
+
+.link-button { background: none; border: none; padding: 0; font: inherit; font-weight: 600; color: var(--green); cursor: pointer; text-decoration: none; }
+.link-button:hover { text-decoration: underline; }
+.back-link { display: inline-block; margin-bottom: 1rem; font-size: 0.88rem; }
+
+.auth-view .alert { margin-bottom: 1.25rem; }
+
+/* Google sign-in */
+.social-divider { display: flex; align-items: center; gap: 0.8rem; margin: 1.4rem 0 1.1rem; font-size: 0.82rem; color: var(--muted); }
+.social-divider::before, .social-divider::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.google-slot { display: flex; justify-content: center; min-height: 44px; }
+.google-slot iframe { max-width: 100%; }
+.google-fallback { width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; padding: 0.7rem 1rem; background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius-sm); font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; color: #3c4043; cursor: pointer; transition: background 0.15s ease, border-color 0.15s ease; }
+.google-fallback:hover { background: #f8f9fa; border-color: var(--indigo); }
+.google-fallback svg { width: 18px; height: 18px; flex-shrink: 0; }
+.google-note { margin: 0.6rem 0 0; font-size: 0.82rem; color: var(--muted); text-align: center; min-height: 1.1em; }
+
+/* Success prompt */
+.success-view { text-align: center; padding-top: 0.75rem; }
+.success-view h1 { margin-top: 1rem; }
+.success-view .auth-subtitle { margin-bottom: 1.5rem; }
+.success-check { width: 84px; height: 84px; margin: 0 auto; display: block; }
+.success-check circle { fill: none; stroke: var(--green); stroke-width: 4; stroke-dasharray: 252; stroke-dashoffset: 252; animation: draw 0.6s ease forwards; }
+.success-check path { fill: none; stroke: var(--green); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 60; stroke-dashoffset: 60; animation: draw 0.4s ease 0.55s forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.success-actions { display: grid; gap: 0.7rem; }
+.success-actions .btn { width: 100%; }
+.success-actions .btn-outline { border-color: var(--indigo); color: var(--indigo); }
+.success-actions .btn-outline:hover { background: rgba(27, 42, 74, 0.06); border-color: var(--indigo); }
+
+@media (max-width: 480px) {
+    .form-row { grid-template-columns: 1fr; gap: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .success-check circle, .success-check path { animation: none; stroke-dashoffset: 0; }
+}
+</style>
+</head>
+<body>
+<a href="#auth-main" class="skip-link">Skip to content</a>
+<div id="preloader"><div class="spinner"></div></div>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="logo">
+            <a href="index.html"><img src="images/church-logo.png" alt="CCG logo" class="church-logo-img"><span>CCG</span></a>
+        </div>
+        <nav class="main-nav" id="main-nav" aria-label="Primary">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="others.html">Others</a></li>
+                <li><a href="social.html">Follow Us</a></li>
+                <li><a href="index.html#welcome">About Us</a></li>
+                <li><a href="index.html#sermons">Sermons</a></li>
+                <li><a href="prayer.html">Live Prayer</a></li>
+                <li><a href="bible.html">Bible</a></li>
+                <li><a href="index.html#events">Events</a></li>
+                <li><a href="index.html#community">Community</a></li>
+                <li id="auth-link-container"><a href="login.html" id="nav-login-link" aria-current="page">Login / Register</a></li>
+                <li><a href="give.html">Give</a></li>
+                <li><a href="mailto:christianchurchghana@gmail.com">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+    </div>
+</header>
+
+<main id="auth-main">
+    <div class="auth-form-container">
+        <div class="auth-form">
+
+            <!-- ===== LOGIN ===== -->
+            <section class="auth-view" id="view-login" data-title="Login">
+                <p class="auth-eyebrow">Members</p>
+                <h1 tabindex="-1">Welcome back</h1>
+                <p class="auth-subtitle">Sign in to continue your journey with us.</p>
+
+                <div class="auth-tabs" role="tablist" aria-label="Account">
+                    <button type="button" class="auth-tab" role="tab" data-go="login" aria-selected="true">Login</button>
+                    <button type="button" class="auth-tab" role="tab" data-go="register" aria-selected="false">Register</button>
+                </div>
+
+                <div class="alert alert-success" id="login-notice" role="status" hidden></div>
+
+                <form id="login-form" novalidate>
+                    <div class="form-group">
+                        <label for="l-email">Email</label>
+                        <input class="form-input" type="email" id="l-email" autocomplete="email" required>
+                        <span class="field-error" id="l-email-error" role="alert"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="l-password">Password</label>
+                        <div class="password-field">
+                            <input class="form-input" type="password" id="l-password" autocomplete="current-password" required>
+                            <button class="password-toggle" type="button" aria-label="Show password"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5C7 5 2.7 8.1 1 12c1.7 3.9 6 7 11 7s9.3-3.1 11-7c-1.7-3.9-6-7-11-7zm0 11.5a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9zm0-7a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/></svg></button>
+                        </div>
+                        <span class="field-error" id="l-password-error" role="alert"></span>
+                    </div>
+                    <div class="form-meta">
+                        <button type="button" class="forgot-link link-button" data-go="forgot" style="color: var(--rust);">Forgot password?</button>
+                    </div>
+                    <button class="form-button" type="submit"><span class="button-spinner" aria-hidden="true"></span><span class="button-label">Login</span></button>
+                    <p class="login-message" id="login-message" role="alert"></p>
+                </form>
+
+                <div class="social-divider" aria-hidden="true">or</div>
+                <div class="google-slot" data-google-slot></div>
+                <p class="google-note" data-google-note role="status"></p>
+
+                <p class="auth-message">New here? <button type="button" class="link-button" data-go="register">Create an account</button></p>
+            </section>
+
+            <!-- ===== REGISTER ===== -->
+            <section class="auth-view" id="view-register" data-title="Register" hidden>
+                <p class="auth-eyebrow">Join us</p>
+                <h1 tabindex="-1">Create your account</h1>
+                <p class="auth-subtitle">It only takes a minute.</p>
+
+                <div class="auth-tabs" role="tablist" aria-label="Account">
+                    <button type="button" class="auth-tab" role="tab" data-go="login" aria-selected="false">Login</button>
+                    <button type="button" class="auth-tab" role="tab" data-go="register" aria-selected="true">Register</button>
+                </div>
+
+                <form id="register-form" novalidate>
+                    <div class="form-group">
+                        <label for="r-name">Full name</label>
+                        <input class="form-input" type="text" id="r-name" autocomplete="name" required>
+                        <span class="field-error" id="r-name-error" role="alert"></span>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="r-email">Email</label>
+                            <input class="form-input" type="email" id="r-email" autocomplete="email" required>
+                            <span class="field-error" id="r-email-error" role="alert"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="r-phone">Phone <span class="optional">(optional)</span></label>
+                            <input class="form-input" type="tel" id="r-phone" autocomplete="tel" placeholder="024 000 0000">
+                            <span class="field-error" id="r-phone-error" role="alert"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="r-age-group">Age group</label>
+                        <select class="form-input" id="r-age-group" required>
+                            <option value="">Choose your age group</option>
+                            <option value="youth">Youth (13–26)</option>
+                            <option value="adult">Adult (27+)</option>
+                            <option value="under13">Under 13</option>
+                        </select>
+                        <small class="age-note">This is self-declared and is not an age verification.</small>
+                        <span class="field-error" id="r-age-group-error" role="alert"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="r-password">Password</label>
+                        <div class="password-field">
+                            <input class="form-input" type="password" id="r-password" autocomplete="new-password" required aria-describedby="r-strength-text">
+                            <button class="password-toggle" type="button" aria-label="Show password"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5C7 5 2.7 8.1 1 12c1.7 3.9 6 7 11 7s9.3-3.1 11-7c-1.7-3.9-6-7-11-7zm0 11.5a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9zm0-7a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/></svg></button>
+                        </div>
+                        <div class="strength" aria-hidden="true"><span id="r-strength-bar"></span></div>
+                        <p class="strength-text" id="r-strength-text">Use 8+ characters with letters and numbers.</p>
+                        <span class="field-error" id="r-password-error" role="alert"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="r-confirm">Confirm password</label>
+                        <input class="form-input" type="password" id="r-confirm" autocomplete="new-password" required>
+                        <span class="field-error" id="r-confirm-error" role="alert"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="terms"><input type="checkbox" id="r-terms"> <span>I agree to be contacted by Christian Church of Ghana about my account and church updates.</span></label>
+                        <span class="field-error" id="r-terms-error" role="alert"></span>
+                    </div>
+                    <button class="form-button" type="submit"><span class="button-spinner" aria-hidden="true"></span><span class="button-label">Create account</span></button>
+                    <p class="login-message" id="register-message" role="alert"></p>
+                </form>
+
+                <div class="social-divider" aria-hidden="true">or</div>
+                <div class="google-slot" data-google-slot></div>
+                <p class="google-note" data-google-note role="status"></p>
+
+                <p class="auth-message">Already have an account? <button type="button" class="link-button" data-go="login">Login</button></p>
+            </section>
+
+            <!-- ===== FORGOT PASSWORD ===== -->
+            <section class="auth-view" id="view-forgot" data-title="Reset password" hidden>
+                <button type="button" class="link-button back-link" data-go="login">&larr; Back to login</button>
+                <p class="auth-eyebrow">Account help</p>
+                <h1 tabindex="-1">Forgot your password?</h1>
+                <p class="auth-subtitle" id="forgot-subtitle">Enter the email you registered with and we will help you set a new password.</p>
+
+                <form id="forgot-form" novalidate>
+                    <div class="form-group">
+                        <label for="f-email">Email</label>
+                        <input class="form-input" type="email" id="f-email" autocomplete="email" required>
+                        <span class="field-error" id="f-email-error" role="alert"></span>
+                    </div>
+                    <button class="form-button" type="submit"><span class="button-spinner" aria-hidden="true"></span><span class="button-label">Continue</span></button>
+                </form>
+
+                <form id="reset-form" novalidate hidden>
+                    <div class="alert" style="margin-bottom:1.25rem;">Choose a new password for <strong id="reset-email"></strong>.</div>
+                    <div class="form-group">
+                        <label for="n-password">New password</label>
+                        <div class="password-field">
+                            <input class="form-input" type="password" id="n-password" autocomplete="new-password" required>
+                            <button class="password-toggle" type="button" aria-label="Show password"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5C7 5 2.7 8.1 1 12c1.7 3.9 6 7 11 7s9.3-3.1 11-7c-1.7-3.9-6-7-11-7zm0 11.5a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9zm0-7a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/></svg></button>
+                        </div>
+                        <div class="strength" aria-hidden="true"><span id="n-strength-bar"></span></div>
+                        <p class="strength-text" id="n-strength-text"></p>
+                        <span class="field-error" id="n-password-error" role="alert"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="n-confirm">Confirm new password</label>
+                        <input class="form-input" type="password" id="n-confirm" autocomplete="new-password" required>
+                        <span class="field-error" id="n-confirm-error" role="alert"></span>
+                    </div>
+                    <button class="form-button" type="submit"><span class="button-spinner" aria-hidden="true"></span><span class="button-label">Update password</span></button>
+                </form>
+                <p class="login-message" id="forgot-message" role="alert"></p>
+            </section>
+
+            <!-- ===== ACCOUNT CREATED ===== -->
+            <section class="auth-view success-view" id="view-success" data-title="Account created" hidden>
+                <svg class="success-check" viewBox="0 0 84 84" aria-hidden="true">
+                    <circle cx="42" cy="42" r="40"/>
+                    <path d="M25 43l12 12 23-26"/>
+                </svg>
+                <h1 tabindex="-1">Account created successfully</h1>
+                <p class="auth-subtitle" id="success-text" role="status">Welcome! Your account is ready.</p>
+                <div class="success-actions">
+                    <a class="btn btn-primary" href="index.html" id="success-home">Continue to the website</a>
+                    <button type="button" class="btn btn-outline" id="success-login">Go to login</button>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-stripe"></div>
+    <div class="container footer-content">
+        <div>
+            <h3>Christian Church of Ghana</h3>
+            <p>A community growing in faith and love.</p>
+        </div>
+        <div>
+            <h3>Contact Us</h3>
+            <p>Teshie Tesaco, Accra, Ghana</p>
+            <p>Email: <a href="mailto:christianchurchghana@gmail.com">christianchurchghana@gmail.com</a></p>
+            <p>Phone: <a href="tel:+233548221004">+233 54 822 1004</a></p>
+        </div>
+    </div>
+    <div class="footer-bottom container">&copy; 2026 Christian Church of Ghana. All Rights Reserved.</div>
+</footer>
+
+<script src="site.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="supabase-client.js"></script>
+<script src="presence.js"></script>
+<script src="users.js"></script>
+<script src="login-auth.js"></script>
+<script src="nav-icons.js"></script>
+<script src="ccg-guide.js" defer></script>
+<script src="app.js" defer></script>
+</body>
+</html>
+
+

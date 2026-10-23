@@ -1,0 +1,11 @@
+.env
+.env.*
+!.env.example
+node_modules/
+**/node_modules/
+/data.json
+/data.json.tmp
+/mobile-app/www/
+*.log
+.DS_Store
+Thumbs.db
